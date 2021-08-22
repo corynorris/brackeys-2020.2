@@ -72,10 +72,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnTime);
-            SpawnItem()
-
-
-
+            SpawnItem();
         }
     }
 
