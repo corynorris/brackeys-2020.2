@@ -52,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
             Health health = enemy.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
+                health.TakeDamage(attackDamage, player.GetForwardDirection());
             }
         }
     }

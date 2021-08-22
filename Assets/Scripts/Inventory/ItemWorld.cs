@@ -16,13 +16,19 @@ public class ItemWorld : MonoBehaviour
 
         return itemWorld;
     }
-    
-    public static ItemWorld DropItem(Vector3 dropPosition, Item item)
+
+    public static ItemWorld DropItemInDirection(Vector3 dropPosition, Item item, Vector3 direction)
+    {
+        ItemWorld itemWorld = SpawnItemWorld(dropPosition + direction, item);
+        itemWorld.GetComponent<Rigidbody2D>().AddForce(direction * 2f, ForceMode2D.Impulse);
+        return itemWorld;
+    }
+
+
+    public static ItemWorld DropItemRandom(Vector3 dropPosition, Item item)
     {
         Vector3 randomDir = Utils.GetRandomDir();
-        ItemWorld itemWorld = SpawnItemWorld(dropPosition  + randomDir, item);
-        itemWorld.GetComponent<Rigidbody2D>().AddForce(randomDir * 2f, ForceMode2D.Impulse);
-        return itemWorld;
+        return DropItemInDirection(dropPosition, item, randomDir);
     }
 
     private Item item;
