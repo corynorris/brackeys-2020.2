@@ -40,7 +40,7 @@ public class Cloud : MonoBehaviour
     {        
         Player player = otherObject.gameObject.GetComponent<Player>();
         if (player != null)
-            player.UnBlind();
+            player.Blind();
     }
 
     void OnTriggerExit2D(Collider2D otherObject)
