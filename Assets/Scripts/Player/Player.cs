@@ -7,6 +7,10 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float lerpTime =.8f;
+    private float currentLerpTime;
+    private float targetIntensity = 0.2f;
+    private float startIntensity = 0.2f;
 
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
@@ -45,15 +49,11 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
-
         v = gameObject.GetComponent<Volume>();
         v.profile.TryGet(out vg);
 
     }
-    float lerpTime = 1f;
-    float currentLerpTime;
-    float targetIntensity = 0.2f;
-    float startIntensity = 0.2f;
+
 
     private void Update()
     {
