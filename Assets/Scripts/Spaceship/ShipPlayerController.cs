@@ -16,8 +16,7 @@ public class ShipPlayerController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D rb;
-    [SerializeField]
-    private GameObject menu;
+    private ShipStationController menu;
 
     // Start is called before the first frame update
     void Start()
@@ -100,13 +99,15 @@ public class ShipPlayerController : MonoBehaviour
     public void openMenu()
     {
         freeToMove = false;
-        menu.SetActive(true);
+        stop();
+        menu.turnOnMenu();
     }
 
     public void closeMenu()
     {
         freeToMove = true;
-        menu.SetActive(false);
+        menu.turnOffMenu();
+        menu = null;
     }
 
     private void stop()
@@ -121,7 +122,7 @@ public class ShipPlayerController : MonoBehaviour
     {
         if(collision.tag == "Station")
         {
-            stop();
+            this.menu = collision.gameObject.GetComponentInParent<ShipStationController>();
             openMenu();
         }
     }

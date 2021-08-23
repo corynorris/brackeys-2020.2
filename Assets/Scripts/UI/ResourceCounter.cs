@@ -24,17 +24,11 @@ public class ResourceCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateText();
+
     }
 
-    public void addResource(float count)
+    public void updateText(float resource)
     {
-        this.resourceCount += count;
-        updateText();
-    }
-
-    private void updateText()
-    {
-        this.text.GetComponent<Text>().text = prefix + " " + resourceCount + " " + postfix;
+        this.text.GetComponent<Text>().text = prefix + " " + resource + " " + postfix;
     }
 }

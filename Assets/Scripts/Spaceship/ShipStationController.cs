@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ShipStationController : MonoBehaviour
 {
+
+    [SerializeField]
+    private GameObject menu;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,15 @@ public class ShipStationController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void turnOnMenu()
+    {
+        menu.SetActive(true);
+    }
+
+    public void turnOffMenu()
+    {
+        menu.SetActive(false);
     }
 }
