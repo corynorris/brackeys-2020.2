@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class Player : MonoBehaviour
 
     private Vector3 forward = Vector3.down;
 
+    private GameObject gameObject;
+
     private Animator body;
     private Animator head;
     private Animator weapon;
 
     private Volume volume;
+
+    private Volume v;
+    private Vignette vg;
 
     private void Awake()
     {
@@ -34,13 +40,14 @@ public class Player : MonoBehaviour
         volume = FindObjectOfType<Volume>();
     }
 
-
     private void Start()
     {
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
 
+        v = GetComponent<Volume>();
+        v.profile.TryGet(out vg);
 
         // TODO: Smart spawning
         //ItemWorld.SpawnItemWorld(new Vector3(4, 4) + transform.position, new Item { itemType = Item.ItemType.Nurition, amount = 1 });
@@ -121,8 +128,8 @@ public class Player : MonoBehaviour
     }
 
     public void Blind()
-    {       
-
+    {
+        vg.intensity.value = 1;
 
     }
 
