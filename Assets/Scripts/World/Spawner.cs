@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
 
     private List<Vector3> availablePlaces;
 
+    private List<Transform> objectsSpawned = new List<Transform>();
 
 
 
@@ -61,9 +62,10 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < itemsPerSpawn; i++)
         {
-            Instantiate(item,
-                 availablePlaces[Random.Range(0, availablePlaces.Count)],
-                 Quaternion.identity);
+            int selectionIdx = Random.Range(0, availablePlaces.Count);
+            Transform spawned = Instantiate(item, availablePlaces[selectionIdx], Quaternion.identity).transform;
+            availablePlaces.RemoveAt(selectionIdx);
+            objectsSpawned.Add(spawned);
         }
     }
 
@@ -76,55 +78,5 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    //[Tooltip("References to the instantiated objects")]
-    //private  List<Transform> spawnedItems = new List<Transform>();
-
-    //[Tooltip("The settings of our map")]
-    //public MapSettings mapSettings;
-
-    //[Tooltip("The game objects to instantiate")]
-    //public GameObject itemToSpawn;
-
-    //public int amount = 50;
-
-    //public bool cluster = false;
-
-    //public LayerMask obstacleLayers;
-
-    //private int spawned = 0;
-
-    //public Tilemap tilemap;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    int totalSquaresOnMap = mapSettings.width * mapSettings.height;
-    //    Vector2Int[] positionsOnMap = new Vector2Int[totalSquaresOnMap];
-
-    //    for (int x = 0; x < mapSettings.width;x++)
-    //    {
-    //        for (int y = 0; y < mapSettings.height; y++)
-    //        {
-    //            positionsOnMap[x +(y* mapSettings.width)] = new Vector2Int(x, y);
-    //        }
-    //    }
-
-    //    Vector2Int[] randomSpaces = positionsOnMap.OrderBy(x => Random.Range(0, totalSquaresOnMap)).ToArray();
-
-
-    //    for (int i = 0; i < totalSquaresOnMap; i++)
-    //    {
-    //        // try and place at randomSpaces
-    //        Transform transform = Instantiate(itemToSpawn, randomSpaces[i], Quaternion.identity);
-    //    }
-    //}
-
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
-    //private Vector3 PointOnMap(int)
+   
 }
