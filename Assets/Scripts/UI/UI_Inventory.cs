@@ -82,7 +82,7 @@ public class UI_Inventory : MonoBehaviour
 
             rectTransform.GetComponent<Button>().onClick.AddListener(() => {
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
-                ItemWorld.DropItem(player.GetCenter(), duplicateItem);
+                ItemWorld.DropItemRandom(player.GetCenter(), duplicateItem);
                 inventory.RemoveItem(item);
             });
 

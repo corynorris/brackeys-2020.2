@@ -2,9 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float lerpTime =.8f;
+    private float currentLerpTime;
+    private float targetIntensity = 0.2f;
+    private float startIntensity = 0.2f;
 
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
@@ -13,10 +19,17 @@ public class Player : MonoBehaviour
     private CircleCollider2D circleCollider;
 
     private Vector3 forward = Vector3.down;
+    [SerializeField]
+    private GameObject gameObject;
 
     private Animator body;
     private Animator head;
     private Animator weapon;
+
+    private Volume volume;
+
+    private Volume v;
+    private Vignette vg;
 
     private void Awake()
     {
@@ -28,36 +41,33 @@ public class Player : MonoBehaviour
         body = transform.Find("body").GetComponent<Animator>();
         head = transform.Find("head").GetComponent<Animator>();
         weapon = transform.Find("weapon").GetComponent<Animator>();
+        volume = FindObjectOfType<Volume>();
     }
-
 
     private void Start()
     {
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
-
-
-        // TODO: Smart spawning
-        //ItemWorld.SpawnItemWorld(new Vector3(4, 4) + transform.position, new Item { itemType = Item.ItemType.Nurition, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(5, 4) + transform.position, new Item { itemType = Item.ItemType.Nurition, amount = 6 });
-        //ItemWorld.SpawnItemWorld(new Vector3(4, 5) + transform.position, new Item { itemType = Item.ItemType.Nurition, amount = 2 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-4, -4) + transform.position, new Item { itemType = Item.ItemType.Nurition, amount = 3 });
-        //ItemWorld.SpawnItemWorld(new Vector3(2, 2) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(5, 2) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(2, 5) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-2, -2) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-4, 4) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-2, 2) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-5, 4) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-5, 2) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-4, 5) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-2, 5) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-7, -7) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
-        //ItemWorld.SpawnItemWorld(new Vector3(-7, -5) + transform.position, new Item { itemType = Item.ItemType.Scrap, amount = 1 });
+        v = gameObject.GetComponent<Volume>();
+        v.profile.TryGet(out vg);
 
     }
 
+
+    private void Update()
+    {
+        //increment timer once per frame
+        currentLerpTime += Time.deltaTime;
+        if (currentLerpTime > lerpTime)
+        {
+            currentLerpTime = lerpTime;
+        }
+
+        //lerp!
+        float perc = currentLerpTime / lerpTime;
+        vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+    }
 
     public Vector3 GetCenter()
     {
@@ -106,7 +116,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Item") { 
+        if (collision.gameObject.tag == "Item") {
             ItemWorld itemWorld = collision.gameObject.GetComponent<ItemWorld>();
             if (itemWorld)
             {
@@ -116,5 +126,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Blind()
+    {
+        startIntensity = vg.intensity.value;
+        targetIntensity = 1f;
+        currentLerpTime = 0f;
+    }
+
+    public void UnBlind()
+    {
+        startIntensity = vg.intensity.value;
+        targetIntensity = 0.2f;
+        currentLerpTime = 0f;
+
+    }
 
 }

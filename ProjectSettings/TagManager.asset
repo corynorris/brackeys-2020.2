@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< Updated upstream
   - Item
-=======
-  - Station
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -16,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Background
-  - Enemy
+  - Fog
+  - 
+  - 
   - 
   - 
   - 
@@ -44,11 +40,11 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 1806262855
+    uniqueID: 200508535
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 4052013915
+  - name: UI
+    uniqueID: 2316270231
     locked: 0

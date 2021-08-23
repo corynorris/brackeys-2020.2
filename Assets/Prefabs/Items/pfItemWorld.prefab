@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Color: {r: 0.8254717, g: 0.95246774, b: 1, a: 1}
   m_Intensity: 0.3
   m_LightVolumeOpacity: 0.303
-  m_ApplyToSortingLayers: 4762a96b00000000
+  m_ApplyToSortingLayers: 7784f30b00000000977a0f8a
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -215,7 +215,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c72fcef9266a2479cf6b4cd124f62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnce: 0
+  runOnce: 1
   positionOffsetY: 0
 --- !u!1 &3780731943463550842
 GameObject:

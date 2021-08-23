@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 // Source: https://gist.github.com/DGoodayle/69c9c06eb0a277d833c5
 public class VectorRangeAttribute : PropertyAttribute
 {
@@ -18,6 +17,7 @@ public class VectorRangeAttribute : PropertyAttribute
     }
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(VectorRangeAttribute))]
 public class VectorRangeAttributeDrawer : PropertyDrawer
 {
@@ -70,3 +70,4 @@ public class VectorRangeAttributeDrawer : PropertyDrawer
         return vector.x >= rangeAttribute.fMinX && vector.x <= rangeAttribute.fMaxX && vector.y >= rangeAttribute.fMinY && vector.y <= rangeAttribute.fMaxY;
     }
 }
+#endif
