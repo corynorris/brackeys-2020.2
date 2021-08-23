@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
     private Animator head;
     private Animator weapon;
 
+    private Volume volume;
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
         body = transform.Find("body").GetComponent<Animator>();
         head = transform.Find("head").GetComponent<Animator>();
         weapon = transform.Find("weapon").GetComponent<Animator>();
+        volume = FindObjectOfType<Volume>();
     }
 
 
@@ -116,5 +120,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Blind()
+    {       
+
+
+    }
+
+    public void UnBlind()
+    {
+
+    }
 
 }
