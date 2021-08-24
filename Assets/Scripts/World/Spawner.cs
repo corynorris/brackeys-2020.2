@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
     [Header("Spawn Position")]
     [Tooltip("The distance from the spawner")]
-    public Vector2 spawnRange;
+    public Vector2 spawnRange = new Vector2(30,1000);
 
     [Tooltip("Where to calculate distance from")]
     public GameObject spawnPosition;
@@ -34,8 +34,6 @@ public class Spawner : MonoBehaviour
 
     private List<Vector3> availablePlaces;
     private SpawnManager spawnManager;
-
-
 
 
     private void Start()
@@ -68,7 +66,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public Vector3 GetSpawnPosition()
+    protected Vector3 GetSpawnPosition()
     {
         if (spawnPosition != null)
         {
@@ -76,6 +74,12 @@ public class Spawner : MonoBehaviour
         }
 
         return tileMap.cellBounds.center;
+    }
+
+    protected float SpawnDistance(Vector3 spawnPosition)
+    {
+      
+        return Vector3.Distance(GetSpawnPosition(), spawnPosition);
     }
 
     private void CalculateAvailableSpaces()
@@ -90,9 +94,10 @@ public class Spawner : MonoBehaviour
 
                 Vector3Int localPlace = (new Vector3Int(n, p, (int)tileMap.transform.position.y));
                 Vector3 place = tileMap.CellToWorld(localPlace);
-                float distance = Vector3.Distance(GetSpawnPosition(), place);
 
-                if (tileMap.HasTile(localPlace) && distance > spawnRange.x && distance < spawnRange.y)
+                float spawnDistance = SpawnDistance(place);
+
+                if (tileMap.HasTile(localPlace) && spawnDistance > spawnRange.x && spawnDistance < spawnRange.y)
                 {
                     availablePlaces.Add(place);
                 }
@@ -106,15 +111,22 @@ public class Spawner : MonoBehaviour
         }
     }
 
+
+    protected virtual void AfterSpawn(GameObject gameObject, Vector3 spawnPosition){ }
+
     private void SpawnNow()
     {
         for (int i = 0; i < itemsPerSpawn; i++)
         {
             if (availablePlaces.Count == 0) break;
+
             int selectionIdx = Random.Range(0, availablePlaces.Count);
             Vector3 position = availablePlaces[selectionIdx];
-            spawnManager.Spawn(item, position);
+            GameObject spawned = spawnManager.Spawn(item, position);
             availablePlaces.RemoveAt(selectionIdx);
+
+            if (spawned != null)
+                AfterSpawn(spawned, position);
 
         }
     }

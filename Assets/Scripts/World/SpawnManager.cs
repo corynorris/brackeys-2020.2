@@ -13,14 +13,16 @@ public class SpawnManager : MonoBehaviour
         spawners.AddRange(GetComponents<Spawner>());
     }
 
-    public void Spawn(GameObject item, Vector3 position)
+    public GameObject Spawn(GameObject item, Vector3 position)
     {
         if (!objectsSpawned.ContainsKey(position))
         {
             GameObject spawned = Instantiate(item, position, Quaternion.identity);
             objectsSpawned.Add(position, spawned);
+            return spawned;
         }
 
+        return null;
     }
 
     public void RestartSpawners()
