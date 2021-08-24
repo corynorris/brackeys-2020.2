@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c4968839f60db43a8296c3ca5749a8, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  width: 300
+  width: 400
   height: 300
   algorithm: 0
   randomSeed: 0
-  seed: 1616
+  seed: 16

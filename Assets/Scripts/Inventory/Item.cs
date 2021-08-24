@@ -15,7 +15,12 @@ public class Item
     public ItemType itemType;
     public int amount;
 
-    
+    public static ItemType GetRandomType()
+    {
+        Array values = Enum.GetValues(typeof(ItemType));
+        System.Random random = new System.Random();
+        return (ItemType)values.GetValue(random.Next(values.Length));
+    }
 
     public Sprite GetSprite()
     {
