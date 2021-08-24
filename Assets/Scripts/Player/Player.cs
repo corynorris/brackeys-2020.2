@@ -7,29 +7,38 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float lerpTime =.8f;
-    private float currentLerpTime;
-    private float targetIntensity = 0.2f;
-    private float startIntensity = 0.2f;
 
-    private Inventory inventory;
+
+    [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
+    private Inventory inventory;
 
     public static Player Instance { get; private set; }
     private CircleCollider2D circleCollider;
 
     private Vector3 forward = Vector3.down;
-    [SerializeField]
-    private GameObject gameObject;
 
     private Animator body;
     private Animator head;
     private Animator weapon;
 
-    private Volume volume;
 
+
+    [Header("Blindness")]
+    [SerializeField] private GameObject Volume;
+    [SerializeField] private float lerpInTime = 1f;
+    [SerializeField] private float lerpOutTime = 2f;
+    [SerializeField] private float minIntensity = 0.2f;
+    [SerializeField] private float maxIntensity = 1f;
+
+    private Volume volume;
     private Volume v;
     private Vignette vg;
+    private float lerpTime = 1;
+    private float currentLerpTime;
+    private float targetIntensity = 0.2f;
+    private float perc = 0;
+    private float startIntensity;
 
     private void Awake()
     {
@@ -49,7 +58,7 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
-        v = gameObject.GetComponent<Volume>();
+        v = Volume.GetComponent<Volume>();
         v.profile.TryGet(out vg);
 
     }
@@ -64,8 +73,12 @@ public class Player : MonoBehaviour
             currentLerpTime = lerpTime;
         }
 
-        //lerp!
-        float perc = currentLerpTime / lerpTime;
+        perc = 0f;
+        if (lerpTime > 0)
+        {
+            perc = currentLerpTime / lerpTime;
+        }
+
         vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
     }
 
@@ -128,17 +141,18 @@ public class Player : MonoBehaviour
 
     public void Blind()
     {
+        lerpTime = lerpInTime * perc;
+        currentLerpTime = 0;
         startIntensity = vg.intensity.value;
-        targetIntensity = 1f;
-        currentLerpTime = 0f;
+        targetIntensity = maxIntensity;
     }
 
     public void UnBlind()
     {
+        lerpTime = lerpOutTime * perc;
+        currentLerpTime = 0;
         startIntensity = vg.intensity.value;
-        targetIntensity = 0.2f;
-        currentLerpTime = 0f;
-
+        targetIntensity = minIntensity;
     }
 
 }

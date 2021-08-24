@@ -7,9 +7,7 @@ public class ResourceCounter : MonoBehaviour
 {
 
     private float resourceCount;
-
-    [SerializeField]
-    private GameObject text;
+        
     [SerializeField]
     private string prefix;
     [SerializeField]
@@ -29,6 +27,6 @@ public class ResourceCounter : MonoBehaviour
 
     public void updateText(float resource)
     {
-        this.text.GetComponent<Text>().text = prefix + " " + resource + " " + postfix;
+        gameObject.GetComponent<Text>().text = prefix + " " + resource + " " + postfix;
     }
 }

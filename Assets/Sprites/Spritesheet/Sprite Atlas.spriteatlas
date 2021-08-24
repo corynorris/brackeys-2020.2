@@ -32,7 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ea69e6a9e166d0e438293311e5458bf5, type: 3}
-    totalSpriteSurfaceArea: 162788890
+    totalSpriteSurfaceArea: 164411290
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -1191,6 +1191,7 @@ SpriteAtlas:
   - {fileID: -1525763588066094277, guid: a1925e7d73214f63a8ddcce6bea40954, type: 3}
   - {fileID: 3650304123865126532, guid: a1925e7d73214f63a8ddcce6bea40954, type: 3}
   - {fileID: -3113763368734956792, guid: a1925e7d73214f63a8ddcce6bea40954, type: 3}
+  - {fileID: 21300000, guid: bd843f8d647948944b54ffc9828c2307, type: 3}
   - {fileID: 8926881477360062686, guid: 626be61ea46848f48841509c5271e64f, type: 3}
   - {fileID: 5828879757645499619, guid: 626be61ea46848f48841509c5271e64f, type: 3}
   - {fileID: -2847747920347511190, guid: 626be61ea46848f48841509c5271e64f, type: 3}
@@ -2589,6 +2590,7 @@ SpriteAtlas:
   - sword_6
   - sword_5
   - sword_4
+  - world_desert_normal
   - hammer_9
   - hammer_12
   - hammer_60
