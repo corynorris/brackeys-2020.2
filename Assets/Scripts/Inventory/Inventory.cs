@@ -60,6 +60,9 @@ public class Inventory
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
+
+
+
     public IEnumerable<Item> GetItemList()
     {
         return itemList;
