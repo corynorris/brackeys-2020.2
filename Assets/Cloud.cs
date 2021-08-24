@@ -12,12 +12,12 @@ public class Cloud : MonoBehaviour
     [SerializeField] float GaussSigmaFactor = 6.0f;
     private float timeLeft;
     float timeTracker = 0f;
-
+    private Vector3 spawnPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -50,11 +50,23 @@ public class Cloud : MonoBehaviour
             player.UnBlind();
     }
 
+    Vector3 GetLeashPosition()
+    {
+        if (leashObject)
+        {
+            return leashObject.transform.position;
+        }
+
+        return spawnPosition;
+    }
+
     private void ChangeDirection()
     {
+        Vector3 leashPosition = GetLeashPosition();
+
         if(GetLeashDistance() > leashSlack)
         {
-            direction = Mathf.Atan2(leashObject.transform.position.y - gameObject.transform.position.y, leashObject.transform.position.x - gameObject.transform.position.x) * 180 / Mathf.PI;
+            direction = Mathf.Atan2(leashPosition.y - gameObject.transform.position.y, leashPosition.x - gameObject.transform.position.x) * 180 / Mathf.PI;
             if (direction < 0)
                 direction += 360;                        
         }
@@ -67,12 +79,14 @@ public class Cloud : MonoBehaviour
 
     private float GetLeashDistance()
     {
-        return Mathf.Abs(gameObject.transform.position.x - leashObject.transform.position.x) + Mathf.Abs(gameObject.transform.position.y - leashObject.transform.position.y);
+        Vector3 leashPosition = GetLeashPosition();
+        return Mathf.Abs(gameObject.transform.position.x - leashPosition.x) + Mathf.Abs(gameObject.transform.position.y - leashPosition.y);
     }
 
     private float GetLeashDirection()
     {
-        Vector2.Angle(gameObject.transform.position, leashObject.transform.position);
+        Vector3 leashPosition = GetLeashPosition();
+        Vector2.Angle(gameObject.transform.position, leashPosition);
         
         return 0.0f;
     }
