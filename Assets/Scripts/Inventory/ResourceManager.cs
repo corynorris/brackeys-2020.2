@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
+        
+    
+    [SerializeField]
+    private GameObject shipHealthSlider;
+    [SerializeField]
+    private GameObject oxygenSlider;
+    [SerializeField]
+    private GameObject foodSlider;
+    [SerializeField]
+    private GameObject energySlider;
+    
 
-    private float shipHealth;
-    [SerializeField]
-    private ProgressBar shipHealthBar;
-    private float oxygen;
-    [SerializeField]
-    private ProgressBar oxygenBar;
-    private float energy;
-    [SerializeField]
-    private ProgressBar energyBar;
-    private float scrap;
     [SerializeField]
     private ResourceCounter scrapCounter;
-    private float food;
     [SerializeField]
     private ResourceCounter foodCounter;
 
     private static ResourceManager _instance;
-    public static ResourceManager Instance { get { return _instance; } }
+    public static ResourceManager GetInstance() {  return _instance; }
 
 
     private void Awake()
@@ -36,17 +37,10 @@ public class ResourceManager : MonoBehaviour
             _instance = this;
         }
     }
-
-
-
     // Start is called before the first frame update
     void Start()
     {
-        updateShipHealth(1);
-        updateOxygen(1);
-        updateEnergy(1);
-        updateScrap(50);
-        updateFood(100);
+        
     }
 
     // Update is called once per frame
@@ -57,31 +51,36 @@ public class ResourceManager : MonoBehaviour
 
     public void updateShipHealth(float shipHealth)
     {
-        this.shipHealth += shipHealth;
-        this.shipHealthBar.setProgress(shipHealth);
-    }
-
-    public void updateOxygen(float oxygen)
-    {
-        this.oxygen += oxygen;
-        this.oxygenBar.setProgress(oxygen);
-    }
-
-    public void updateEnergy(float energy)
-    {
-        this.energy += energy;
-        this.energyBar.setProgress(energy);
-    }
-
-    public void updateScrap(float scrap)
-    {
-        this.scrap += scrap;
-        this.scrapCounter.updateText(scrap);
+        shipHealthSlider.GetComponentInChildren<Slider>().value = shipHealth;
     }
 
     public void updateFood(float food)
     {
-        this.food += food;
+        
+        foodSlider.GetComponentInChildren<Slider>().value = food;
+
+    }
+
+    public void updateOxygen(float oxygen)
+    {        
+        
+        oxygenSlider.GetComponentInChildren<Slider>().value = oxygen;
+        
+    }
+
+    public void updateEnergy(float energy)
+    {        
+        
+        energySlider.GetComponentInChildren<Slider>().value = energy;
+    }
+
+    public void updateScrapReserve(float scrap)
+    {        
+        this.scrapCounter.updateText(scrap);
+    }
+
+    public void updateFoodReserve(float food)
+    {     
         this.foodCounter.updateText(food);
     }
 
