@@ -38,6 +38,17 @@ public class LevelController : MonoBehaviour
 
     private ResourceManager resourceManager;
 
+    public int suitTankLvl { get; set; }
+    public int suitGogglesLvl { get; set; }
+    public int suitBootsLvl { get; set; }
+
+    public int[] suitGogglesCost { get; set; }
+    public int[] suitBootsCost { get; set; }
+    public int[] suitTankCost { get; set; }
+
+    public int foodProcessingLvl { get; set; }
+    public int[] foodProcessingCost { get; set; }
+    public string[] foodProcessingDesc { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -180,6 +191,11 @@ public class LevelController : MonoBehaviour
         return ship.GetHealth();
     }
 
+    public void RestoreShipHealth(float amount)
+    {
+        //andrew add this
+    }
+
     public float GetPlayerOxygen()
     {
         return playerOxygen;
@@ -203,5 +219,14 @@ public class LevelController : MonoBehaviour
     public float GetReserveScrap()
     {
         return reserveScrap;
+    }
+
+    public void RemoveReserveScrap(float amount)
+    {
+       reserveScrap -= amount;
+        if (reserveScrap < 0)
+        {
+            reserveScrap = 0;
+        }
     }
 }
