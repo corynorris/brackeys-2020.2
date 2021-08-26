@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        uiInventory.SetInventory(inventory);
+        uiInventory.SetInventory(inventory);                    
         uiInventory.SetPlayer(this);
 
         v = Volume.GetComponent<Volume>();
@@ -82,8 +82,6 @@ public class Player : MonoBehaviour
         health.OnDied += Health_OnDied;
 
     }
-
-
 
     private void Update()
     {
@@ -139,7 +137,7 @@ public class Player : MonoBehaviour
 
     public bool CanMove()
     {
-        return body.GetCurrentAnimatorStateInfo(0).IsName("Movement") || body.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !menuOpen;
+        return body.GetCurrentAnimatorStateInfo(0).IsName("Movement") || body.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     }
 
     public void SetSpeed(float speed)
@@ -202,21 +200,21 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Station")
         {
-            closeMenu();
-            this.menu = null;
+            CloseMenu();            
             menuAvaliable = false;
             this.menu.highlightStation(false);
+            this.menu = null;
         }
     }
 
-    public void openMenu()
+    public void OpenMenu()
     {
         if (this.menu.isExit)
         {
-            exitShip();
+            ExitShip();
         } else if(this.menu.isEntrance)
         {
-            enterShip();
+            EnterShip();
         }
         else
         {
@@ -226,11 +224,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void closeMenu()
+    public void CloseMenu()
     {
-        menuOpen = false;
-        this.menu.turnOffMenu();
-        menuAvaliable = true;
+        if (! this.menu.isExit && !this.menu.isEntrance)
+        {
+            menuOpen = false;
+            this.menu.turnOffMenu();
+            menuAvaliable = true;
+        }        
     }
 
     public void Blind()
@@ -249,13 +250,13 @@ public class Player : MonoBehaviour
         targetIntensity = minIntensity;
     }
 
-    public void enterShip()
+    public void EnterShip()
     {
         SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
         Instance.transform.position = new Vector3(0, 0, 0);
     }
 
-    public void exitShip()
+    public void ExitShip()
     {
         SceneManager.UnloadSceneAsync("Spaceship");
         //put back outside ship

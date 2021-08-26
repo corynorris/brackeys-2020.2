@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
-{
-    [SerializeField]
+{    
     private LevelController lvlController;
 
     [SerializeField]
-    private Button upgradeButton;
+    private GameObject upgradeButton;
 
     [SerializeField]
     private Text currLevelText;
@@ -24,13 +23,23 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
     [SerializeField]
     private Text nextLevelDesc;
 
+    [SerializeField]
+    private string[] levelIdentifiers;
+    [SerializeField]
+    private float[] levelCosts;
+    [SerializeField]
+    private float[] levelEfficiency;
 
+    
+    [SerializeField] GameObject upgradeErrorNotification;
 
     // Start is called before the first frame update
     void Start()
     {
         lvlController = FindObjectOfType<LevelController>();
-        UpgradeFood();
+        Render();       
+        
+        //UpgradeFood();
     }
 
     // Update is called once per frame
@@ -39,43 +48,52 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
 
     }
 
-    public void UpgradeFood()
+    private void Render()
     {
+        setCurrLevelText("Level: " + levelIdentifiers[lvlController.foodProcessingLvl]);
+        setCurrLevelDesc("One nutrient unit processed into " + levelEfficiency[lvlController.foodProcessingLvl] + " food units.");
         
-        if (lvlController.foodProcessingLvl < lvlController.foodProcessingCost.Length)
+
+
+        if (!(lvlController.foodProcessingLvl + 1 >= levelIdentifiers.Length))
         {
-            if (lvlController.foodProcessingCost[lvlController.foodProcessingLvl] <= lvlController.GetReserveScrap())//cost check
-            {
-                setCurrLevelText("Level: " + lvlController.foodProcessingLvl + 1);
-                setNextLevelText("Level: " + lvlController.foodProcessingLvl + 2);
-                setCurrLevelDesc(lvlController.foodProcessingDesc[lvlController.foodProcessingLvl]);
-                setNextLevelDesc(lvlController.foodProcessingDesc[lvlController.foodProcessingLvl + 1]);
-                lvlController.foodProcessingLvl++;
-            }
+            setNextLevelText("Level: " + levelIdentifiers[lvlController.foodProcessingLvl + 1]);
+            setNextLevelDesc("One nutrient unit processed into " + levelEfficiency[lvlController.foodProcessingLvl + 1] + " food units.");
+            setNextLevelCost("Upgrade Cost: " + levelCosts[lvlController.foodProcessingLvl + 1] + " Scrap.");
         }
         else
         {
-            setCurrLevelText("Max");
-            setNextLevelText("");
-            setCurrLevelDesc(lvlController.foodProcessingDesc[lvlController.foodProcessingLvl]);
-            setNextLevelDesc("");
-            upgradeButton.enabled = false;
-
+            setNextLevelText("N/A");
+            setNextLevelDesc("Maximum efficiency reached.");
+            setNextLevelCost("Maximum efficiency reached.");
         }
-    }
 
-    public void checkButtonStatus()
-    {
-        if (lvlController.foodProcessingCost[lvlController.foodProcessingLvl] <= lvlController.GetReserveScrap())
+        if(lvlController.GetReserveScrap() >= levelCosts[lvlController.foodProcessingLvl + 1])
         {
-            upgradeButton.enabled = true;
+            upgradeButton.SetActive(true);
+            upgradeErrorNotification.SetActive(false);
         }
         else
         {
-            upgradeButton.enabled = false;
+            upgradeButton.SetActive(false);
+            upgradeErrorNotification.SetActive(true);
         }
+
+
+
+
     }
-   
+
+    public void UpgradeFood()
+    {       
+        if (levelCosts[lvlController.foodProcessingLvl + 1] <= lvlController.GetReserveScrap())//cost check
+        {
+            lvlController.RemoveReserveScrap(levelCosts[lvlController.foodProcessingLvl + 1]);
+            lvlController.foodProcessingLvl++;
+            Render();
+        }
+       
+    }
 
     private void setCurrLevelText(string text)
     {
@@ -100,5 +118,10 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
     private void setNextLevelCost(string cost)
     {
         nextLevelCost.text = cost;
+    }
+
+    public void checkButtonStatus()
+    {
+     
     }
 }

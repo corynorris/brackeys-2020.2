@@ -476,11 +476,11 @@ RectTransform:
   - {fileID: 828904212}
   - {fileID: 2114209132}
   m_Father: {fileID: 1510892272}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: -72.6, y: -4.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &139658492
@@ -592,8 +592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: 105}
-  m_SizeDelta: {x: 115.1316, y: 33.6213}
+  m_AnchoredPosition: {x: 299.9187, y: 105}
+  m_SizeDelta: {x: 428.569, y: 33.6213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &149276181
 MonoBehaviour:
@@ -617,12 +617,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -750,8 +750,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.8, y: 66.562}
-  m_SizeDelta: {x: 116.1445, y: 35.8857}
+  m_AnchoredPosition: {x: -146.54, y: 76.267624}
+  m_SizeDelta: {x: 148.67, y: 55.2969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172603758
 MonoBehaviour:
@@ -775,7 +775,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -786,7 +786,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100/100
+  m_Text: 100%
 --- !u!222 &172603759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -972,10 +972,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1603169682}
   - {fileID: 531526432}
   m_Father: {fileID: 1510892272}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2365,7 +2364,7 @@ RectTransform:
   m_Children:
   - {fileID: 149276180}
   m_Father: {fileID: 193119650}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2675,8 +2674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 153, y: -114}
-  m_SizeDelta: {x: 471.9564, y: 81.418}
+  m_AnchoredPosition: {x: 150.6, y: -114.1}
+  m_SizeDelta: {x: 435.3209, y: 81.418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &589939328
 MonoBehaviour:
@@ -3388,8 +3387,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150.21, y: 87}
-  m_SizeDelta: {x: 471.9564, y: 81.418}
+  m_AnchoredPosition: {x: 150.6, y: 86.2}
+  m_SizeDelta: {x: 435.3209, y: 81.418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &659192800
 MonoBehaviour:
@@ -3424,7 +3423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: One meat processed to 10 food.
+  m_Text: One nutrient unit processed into 10 food units.
 --- !u!222 &659192801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3467,8 +3466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -237, y: 267}
-  m_SizeDelta: {x: 352.5, y: 75.4203}
+  m_AnchoredPosition: {x: -206.63, y: 267}
+  m_SizeDelta: {x: 413.25, y: 75.4203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &661632561
 MonoBehaviour:
@@ -3503,7 +3502,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ship Repair
+  m_Text: Maintenance Bay
 --- !u!222 &661632562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5118,17 +5117,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952983143}
   m_CullTransparentMesh: 1
---- !u!114 &977631032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
-  m_PrefabInstance: {fileID: 2114209131}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &977908190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5330,7 +5318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1001078574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5787,7 +5775,7 @@ RectTransform:
   - {fileID: 1217070680}
   - {fileID: 589939327}
   m_Father: {fileID: 1510892272}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8859,8 +8847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334.00137, y: 66.43826}
-  m_SizeDelta: {x: 177.26, y: 100}
+  m_AnchoredPosition: {x: -334, y: 66.43826}
+  m_SizeDelta: {x: 160.2751, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1476661388
 MonoBehaviour:
@@ -8884,7 +8872,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -8895,7 +8883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Current Health
+  m_Text: Hull Integrity
 --- !u!222 &1476661389
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9240,6 +9228,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1412724445}
+  - {fileID: 1829182125}
   - {fileID: 134225839}
   - {fileID: 193119650}
   - {fileID: 2063192378}
@@ -9377,13 +9366,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05988680be798cf4ea79e11c3fbcd496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvlController: {fileID: 0}
-  upgradeButton: {fileID: 977631032}
+  upgradeButton: {fileID: 134225838}
   currLevelText: {fileID: 781303883}
   nextLevelText: {fileID: 2055040906}
   nextLevelCost: {fileID: 149276181}
   currLevelDesc: {fileID: 659192800}
   nextLevelDesc: {fileID: 589939328}
+  levelIdentifiers:
+  - 1
+  - 2
+  - 3
+  - 4
+  levelCosts:
+  - 10
+  - 20
+  - 30
+  - 40
+  levelEfficiency:
+  - 10
+  - 12
+  - 15
+  - 20
+  upgradeErrorNotification: {fileID: 1829182122}
+  currentLevel: 0
 --- !u!1 &1547625191
 GameObject:
   m_ObjectHideFlags: 0
@@ -9986,85 +9991,6 @@ MonoBehaviour:
   part2Cost: {fileID: 1519340440}
   part3Cost: {fileID: 697605152}
   part4Cost: {fileID: 223313520}
---- !u!1 &1603169681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1603169682}
-  - component: {fileID: 1603169684}
-  - component: {fileID: 1603169683}
-  m_Layer: 5
-  m_Name: Text (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1603169682
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603169681}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 193119650}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.7999878, y: 7.8573}
-  m_SizeDelta: {x: 81.4381, y: 33.8471}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1603169683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603169681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Cost:'
---- !u!222 &1603169684
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603169681}
-  m_CullTransparentMesh: 1
 --- !u!1 &1622794961
 GameObject:
   m_ObjectHideFlags: 0
@@ -11270,6 +11196,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821705061}
   m_CullTransparentMesh: 1
+--- !u!1 &1829182122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829182125}
+  - component: {fileID: 1829182124}
+  - component: {fileID: 1829182123}
+  m_Layer: 5
+  m_Name: Food Upgrade Error Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1829182123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829182122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7830189, g: 0.09972411, b: 0.09972411, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: More scrap is needed to upgrade!
+--- !u!222 &1829182124
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829182122}
+  m_CullTransparentMesh: 1
+--- !u!224 &1829182125
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829182122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1510892272}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -234, y: 1.6}
+  m_SizeDelta: {x: 236.6989, y: 72.811}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1846760106
 GameObject:
   m_ObjectHideFlags: 0
@@ -12087,8 +12092,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.7796, y: 186.80757}
-  m_SizeDelta: {x: 485.4, y: 83.8802}
+  m_AnchoredPosition: {x: 11.8127, y: 172.59}
+  m_SizeDelta: {x: 848.1471, y: 112.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1920071173
 MonoBehaviour:
@@ -12112,7 +12117,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 22
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -12123,7 +12128,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Repair the ship hull. If the health reaches zero survival is impossible.
+  m_Text: The ship's hull shields core life support systems and ensures the overall
+    structural integrity of the entire vessel.
 --- !u!222 &1920071174
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12150,7 +12156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1938222895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12627,12 +12633,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1510892272}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.891, y: 191.21}
-  m_SizeDelta: {x: 471.9564, y: 81.418}
+  m_AnchoredPosition: {x: 15.111107, y: 191.21}
+  m_SizeDelta: {x: 710.3329, y: 81.418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046021240
 MonoBehaviour:
@@ -12656,7 +12662,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -12667,7 +12673,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Meat is processed to food here. Upgrade to increase efficiency.
+  m_Text: Nutrient harvested from the environment is processed into food here. Upgrade
+    to increase efficiency.
 --- !u!222 &2046021241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12789,7 +12796,7 @@ RectTransform:
   - {fileID: 781303882}
   - {fileID: 659192799}
   m_Father: {fileID: 1510892272}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12953,10 +12960,14 @@ PrefabInstance:
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1531374041}
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: UpgradeFood
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FoodUpgradeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199981594670351275, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_Text

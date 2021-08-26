@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                player.openMenu();
+                player.OpenMenu();
             }
         }
 
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                player.closeMenu();
+                player.CloseMenu();
             }
         }
 
