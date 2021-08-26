@@ -8,11 +8,13 @@ public class Inventory
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
     
-    public Inventory()
+    private Action<Item> useItemAction;
+
+    public Inventory(Action<Item>  useItemAction)
     {
+        this.useItemAction = useItemAction;
         itemList = new List<Item>();
     }
-
 
     public void AddItem(Item item)
     {
@@ -62,6 +64,13 @@ public class Inventory
     }
 
 
+    public void UseItem(Item item)
+    {
+        if (item.IsConsumable()) { 
+            useItemAction(item);
+            RemoveItem(item);
+        }
+    }
 
     public IEnumerable<Item> GetItemList()
     {

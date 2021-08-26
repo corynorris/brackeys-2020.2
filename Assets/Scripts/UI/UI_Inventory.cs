@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Inventory : MonoBehaviour
@@ -68,6 +69,8 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
+
+
     // TODO: Factor out slot logic
     private void DrawInventorySlots()
     {
@@ -80,7 +83,12 @@ public class UI_Inventory : MonoBehaviour
             RectTransform rectTransform = Instantiate(itemSlotTemplate, itemContainer).GetComponent<RectTransform>();
             rectTransform.gameObject.SetActive(true);
 
-            rectTransform.GetComponent<Button>().onClick.AddListener(() => {
+            rectTransform.GetComponent<UI_ClickController>().onLeft.AddListener(() => { 
+                inventory.UseItem(item);
+               
+            });
+
+            rectTransform.GetComponent<UI_ClickController>().onRight.AddListener(() => {
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
                 ItemWorld.DropItemRandom(player.GetCenter(), duplicateItem);
                 inventory.RemoveItem(item);

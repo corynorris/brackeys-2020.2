@@ -6,11 +6,16 @@ using UnityEngine;
 [Serializable]
 public class Item 
 {
-   public enum ItemType
+    public static ItemType[] Resources = { ItemType.Scrap, ItemType.Nurition };
+
+    public enum ItemType
     {
         Scrap,
         Nurition,
+        Light,
+        Oxygen
     }
+
 
     public ItemType itemType;
     public int amount;
@@ -21,7 +26,7 @@ public class Item
         System.Random random = new System.Random();
         return (ItemType)values.GetValue(random.Next(values.Length));
     }
-
+    
     public Sprite GetSprite()
     {
         switch(itemType)
@@ -29,6 +34,8 @@ public class Item
             default:
             case ItemType.Scrap: return ItemAssets.Instance.scrapSprite;
             case ItemType.Nurition: return ItemAssets.Instance.nutritionSprite;
+            case ItemType.Light: return ItemAssets.Instance.lightSprite;
+            case ItemType.Oxygen: return ItemAssets.Instance.oxygenSprite;
         }
     }
 
@@ -40,6 +47,20 @@ public class Item
             default:
             case ItemType.Scrap: return new Color(0,0,1);
             case ItemType.Nurition: return new Color(0.8f, 0.8f, 0.4f);
+            case ItemType.Light: return new Color(1f,0f,0f);
+            case ItemType.Oxygen: return new Color(0.0f, 0.5f, 0.2f);
+        }
+    }
+    public bool IsConsumable()
+    {
+        switch (itemType)
+        {
+            default:
+            case ItemType.Scrap: return false;
+            case ItemType.Nurition: return false;
+            case ItemType.Light: return true;
+            case ItemType.Oxygen: return true;
+
         }
     }
 
@@ -48,8 +69,29 @@ public class Item
         switch (itemType)
         {
             default:
-            case ItemType.Scrap: return false;
+            case ItemType.Scrap: return true;
             case ItemType.Nurition: return true;
+            case ItemType.Light: return false;
+            case ItemType.Oxygen: return false;
+
         }
     }
+
+    public float GetLightRadius()
+    {
+        switch (itemType)
+        {
+            case ItemType.Light: return 10f;
+            default: return 0.7f;
+        }
+    }
+    public float GetLightIntensity()
+    {
+        switch (itemType)
+        {
+            case ItemType.Light: return 0.4f;
+            default: return 0.4f;
+        }
+    }
+
 }
