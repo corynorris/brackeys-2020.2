@@ -6,6 +6,12 @@ public class ShipStationController : MonoBehaviour
 {
     [SerializeField]
     private GameObject menu;
+
+    [SerializeField]
+    public bool isExit;
+
+    [SerializeField]
+    public bool isEntrance;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +33,10 @@ public class ShipStationController : MonoBehaviour
     public void turnOffMenu()
     {
         menu.SetActive(false);
+    }
+
+    public void highlightStation(bool turnOn)
+    {
+
     }
 }

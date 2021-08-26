@@ -50,6 +50,23 @@ public class LevelController : MonoBehaviour
     public int[] foodProcessingCost { get; set; }
     public string[] foodProcessingDesc { get; set; }
 
+    private static LevelController _instance;
+    public static LevelController GetInstance() { return _instance; }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -228,5 +245,5 @@ public class LevelController : MonoBehaviour
         {
             reserveScrap = 0;
         }
-    }
+    }    
 }
