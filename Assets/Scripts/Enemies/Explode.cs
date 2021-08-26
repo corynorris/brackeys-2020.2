@@ -25,6 +25,6 @@ public class Explode : MonoBehaviour
     private void Boom()
     {
         animator.SetTrigger("explode");
-        Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject, 1f);
     }
 }

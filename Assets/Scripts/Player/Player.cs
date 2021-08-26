@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
                 ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward);
                 return;
             case Item.ItemType.Oxygen:
+
                 health.TakeDamage(10);
                 return;
             default:                 
