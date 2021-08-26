@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     private Animator body;
 
+    private Vector2 forceModifier = Vector2.zero;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -80,12 +81,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
- 
+    public void ModifyForce(Vector2 forceModifier)
+    {
+        this.forceModifier = forceModifier;
+    }
 
     private void FixedUpdate()
     {
-        if (enableMovement) { 
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (enableMovement) {
+            rb.MovePosition(rb.position + forceModifier + movement * moveSpeed * Time.fixedDeltaTime );
+            this.forceModifier = Vector2.zero; 
         }
     }
 

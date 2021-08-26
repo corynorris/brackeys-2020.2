@@ -12,11 +12,11 @@ public class ResourceSpawner : Spawner
     [Tooltip("If checked will randomize the item in the resource")]
      public bool randomizeItemType = true;
 
-    private Item.ItemType GetRandomItemType()
+    private Item.ItemType GetRandomResource()
     {
-        Array values = Enum.GetValues(typeof(Item.ItemType));
         System.Random random = new System.Random();
-        return (Item.ItemType)values.GetValue(random.Next(values.Length));
+        int idx = random.Next(0, Item.Resources.Length);
+        return Item.Resources[idx];
     }
 
     override protected void AfterSpawn(GameObject gameObject, Vector3 spawnPosition) {
@@ -26,7 +26,7 @@ public class ResourceSpawner : Spawner
         resource.item.amount = Mathf.CeilToInt(spawnDistance / distanceBeforeIncrease);
         
         if (randomizeItemType) { 
-             resource.item.itemType = GetRandomItemType();
+             resource.item.itemType = GetRandomResource();
         }
     }
 

@@ -22,6 +22,11 @@ public class Health : MonoBehaviour
         curHealth = maxHealth;
     }
 
+    public void Heal(float amount)
+    {
+        curHealth = Mathf.Clamp(curHealth + amount, 0, maxHealth);
+    }
+
     public void TakeDamage(float damage)
     {
         TakeDamage(damage, Vector3.zero);
