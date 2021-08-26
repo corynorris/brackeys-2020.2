@@ -5,80 +5,71 @@ using UnityEngine.UI;
 
 public class CraftingController : MonoBehaviour, IShipStationMenu
 {
-    [SerializeField]
     private LevelController lvlController;
 
-    [SerializeField]
-    private Button bootsButton;
+  
     [SerializeField]
     private Button batteryButton;
     [SerializeField]
     private Button tankButton;
 
-    [SerializeField]
-    private Text bootsAmountText;
+  
 
     [SerializeField]
     private Text batteryAmountText;
 
     [SerializeField]
     private Text tankAmountText;
-
-    private float batteryCost;
-    private float tankCost;
-    private float bootsCost;
+ 
 
     // Start is called before the first frame update
     void Start()
     {
         lvlController = FindObjectOfType<LevelController>();
-        checkButtonStatus();
+        Render();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Render();
     }
 
-    public void CraftBoots()
+    private void Render()
     {
-
-        if (bootsCost <= lvlController.GetReserveScrap())
-        {
-            //add boots?
-            lvlController.RemoveReserveScrap(bootsCost);
-        }
+        setBatteryAmountText("Crafting Cost: " + lvlController.GetBatteryPackCost() + " Scrap");
+        setTankAmountText("Crafting Cost: " + lvlController.GetOxygenTankCost() + " Scrap");
         checkButtonStatus();
     }
 
     public void CraftBattery()
-    {
-
-        if (batteryCost <= lvlController.GetReserveScrap())
+    {        
+        if (lvlController.GetBatteryPackCost() <= lvlController.GetReserveScrap())
         {
             //add battery?
-            lvlController.RemoveReserveScrap(batteryCost);
+            lvlController.RemoveReserveScrap(lvlController.GetBatteryPackCost());
         }
-        checkButtonStatus();
+        Render();
     }
 
     public void CraftTank()
     {
 
-        if (tankCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetOxygenTankCost() <= lvlController.GetReserveScrap())
         {
             //add battery?
-            lvlController.RemoveReserveScrap(tankCost);
+            lvlController.RemoveReserveScrap(lvlController.GetOxygenTankCost());
         }
-        checkButtonStatus();
+        Render();
     }
 
     public void checkButtonStatus()
     {
-        if (bootsButton)
+       // TODO: check if there is inventory space 
+
+        if (batteryButton)
         {
-            if (bootsCost <= lvlController.GetReserveScrap())//cost check
+            if (lvlController.GetBatteryPackCost() <= lvlController.GetReserveScrap())//cost check
             {
                 batteryButton.enabled = true;
             }
@@ -88,21 +79,9 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
             }
         }
 
-        if (batteryButton)
-        {
-            if (batteryCost <= lvlController.GetReserveScrap())//cost check
-            {
-                bootsButton.enabled = true;
-            }
-            else
-            {
-                bootsButton.enabled = false;
-            }
-        }
-
         if (tankButton)
         {
-            if (tankCost <= lvlController.GetReserveScrap())//cost check
+            if (lvlController.GetOxygenTankCost() <= lvlController.GetReserveScrap())//cost check
             {
                 tankButton.enabled = true;
             }
@@ -110,16 +89,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
             {
                 tankButton.enabled = false;
             }
-        }
-
-        //setBootsAmountText("Have: " );
-        setBatteryAmountText("Have: " );
-        setTankAmountText("Have: "  );
-    }
-
-    private void setBootsAmountText(string text)
-    {
-        bootsAmountText.text = text;
+        }        
     }
 
     private void setBatteryAmountText(string text)

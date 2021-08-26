@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
-{
-    [SerializeField]
+{    
     private LevelController lvlController;
 
     [SerializeField]
@@ -34,71 +33,101 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
     void Start()
     {
         lvlController = FindObjectOfType<LevelController>();
-        UpgradeBoots();
-        UpgradeGoggles();
-        UpgradeTank();
+        //UpgradeBoots();
+        //UpgradeGoggles();
+        //UpgradeTank();
+        Render();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Render();
+    }
+
+    private void Render()
+    {
+        setTankLevelText("Level: " + lvlController.suitTankLvl);
+        setBootsLevelText("Level: " + lvlController.suitBootsLvl);
+        setGogglesLevelText("Level: " + lvlController.suitGogglesLvl);
+
+        if (lvlController.NextSuiteTankLvlCost() > 0)
+        {
+            setTankCostText("Upgrade Cost: " + lvlController.NextSuiteTankLvlCost() + " Scrap");            
+            if (lvlController.GetReserveScrap() < lvlController.NextSuiteTankLvlCost())
+                tankButton.enabled = false;         
+            
+        }
+        else
+        {
+            setTankCostText("Maximum efficiency reached.");
+            tankButton.enabled = false;
+        }
+
+        if (lvlController.NextSuiteGogglesLvlCost() > 0)
+        {
+            setGogglesCostText("Upgrade Cost: " + lvlController.NextSuiteGogglesLvlCost() + " Scrap");
+            if (lvlController.GetReserveScrap() < lvlController.NextSuiteGogglesLvlCost())
+                gogglesButton.enabled = false;
+
+        }
+        else
+        {
+            setGogglesCostText("Maximum efficiency reached.");
+            gogglesButton.enabled = false;
+        }
+
+        if (lvlController.NextSuiteBootsLvlCost() > 0)
+        {
+            setBootsCostText("Upgrade Cost: " + lvlController.NextSuiteBootsLvlCost() + " Scrap");
+            if (lvlController.GetReserveScrap() < lvlController.NextSuiteBootsLvlCost())
+                bootsButton.enabled = false;
+
+        }
+        else
+        {
+            setBootsCostText("Maximum efficiency reached.");
+            bootsButton.enabled = false;
+        }
+
+
     }
 
     public void UpgradeBoots()
     {
-       
-        if (lvlController.suitBootsLvl < lvlController.suitBootsCost.Length)
+
+        if (lvlController.NextSuiteBootsLvlCost() > 0)
         {
-            setBootsLevelText("Level: " + lvlController.suitBootsLvl + 1);
-            setBootsCostText("Scrap: " + lvlController.suitBootsCost[lvlController.suitBootsLvl]);
+            lvlController.RemoveReserveScrap(lvlController.NextSuiteBootsLvlCost());
             lvlController.suitBootsLvl++;
-        }
-        else
-        {
-            setBootsLevelText("Max");
-            setBootsCostText("");
-            bootsButton.enabled = false;
+            Render();
         }
     }
 
     public void UpgradeGoggles()
     {
-       
-        if (lvlController.suitGogglesLvl < lvlController.suitGogglesCost.Length)
+
+        if (lvlController.NextSuiteGogglesLvlCost() > 0)
         {
-            setGogglesLevelText("Level: " + lvlController.suitGogglesLvl + 1);
-            setGogglesCostText("Scrap: " + lvlController.suitGogglesCost[lvlController.suitGogglesLvl]);
+            lvlController.RemoveReserveScrap(lvlController.NextSuiteGogglesLvlCost());
             lvlController.suitGogglesLvl++;
-            
-        }
-        else
-        {
-            setGogglesLevelText("Max");
-            setGogglesCostText("");
-            gogglesButton.enabled = false;
+            Render();
         }
     }
 
     public void UpgradeTank()
-    {
-       
-        if (lvlController.suitTankLvl < lvlController.suitTankCost.Length)
-        {
-            setTankLevelText("Level: " + lvlController.suitTankLvl + 1);
-            setTankCostText("Scrap: " + lvlController.suitTankCost[lvlController.suitTankLvl]);
-            lvlController.suitTankLvl++;           
-        }
-        else
-        {
-            setTankLevelText("Max");
-            setTankCostText("");
-            tankButton.enabled = false;
+    {       
+        if (lvlController.NextSuiteTankLvlCost() > 0)
+        {            
+            lvlController.RemoveReserveScrap(lvlController.NextSuiteTankLvlCost());
+            lvlController.suitTankLvl++;
+            Render();
         }
     }
 
     public void checkButtonStatus()
     {
+        /*
         if (lvlController.suitGogglesCost[lvlController.suitGogglesLvl] <= lvlController.GetReserveScrap())//cost check
         {
             gogglesButton.enabled = true;
@@ -116,7 +145,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         {
             bootsButton.enabled = false;
         }
-
+        /*
         if (lvlController.suitTankCost[lvlController.suitTankLvl] <= lvlController.GetReserveScrap())//cost check
         {
             tankButton.enabled = true;
@@ -124,7 +153,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         else
         {
             tankButton.enabled = false;
-        }
+        }*/
     }
 
     private void setBootsLevelText(string text)

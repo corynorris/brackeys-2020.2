@@ -27,7 +27,7 @@ public class ShipStationController : MonoBehaviour
     public void turnOnMenu()
     {
         menu.SetActive(true);
-        menu.GetComponent<IShipStationMenu>().checkButtonStatus();
+        //menu.GetComponent<IShipStationMenu>().checkButtonStatus();
     }
 
     public void turnOffMenu()
