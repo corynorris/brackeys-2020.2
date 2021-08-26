@@ -61,7 +61,22 @@ public class PlayerMovement : MonoBehaviour
         {
             enableMovement = false;
         }
-            
+
+        if (player.menuAvaliable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                player.openMenu();
+            }
+        }
+
+        if (player.menuOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                player.closeMenu();
+            }
+        }
 
     }
 

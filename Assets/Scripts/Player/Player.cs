@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -39,6 +41,10 @@ public class Player : MonoBehaviour
     private float targetIntensity = 0.2f;
     private float perc = 0;
     private float startIntensity;
+    public bool menuOpen;
+    public bool menuAvaliable;
+
+    private ShipStationController menu;
 
     private void Awake()
     {
@@ -90,7 +96,7 @@ public class Player : MonoBehaviour
 
     public bool CanMove()
     {
-        return body.GetCurrentAnimatorStateInfo(0).IsName("Movement") || body.GetCurrentAnimatorStateInfo(0).IsName("Idle");
+        return body.GetCurrentAnimatorStateInfo(0).IsName("Movement") || body.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !menuOpen;
     }
 
     public void SetSpeed(float speed)
@@ -139,6 +145,51 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Station")
+        {
+            this.menu = collision.gameObject.GetComponentInParent<ShipStationController>();
+            menuAvaliable = true;
+            this.menu.highlightStation(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Station")
+        {
+            closeMenu();
+            this.menu = null;
+            menuAvaliable = false;
+            this.menu.highlightStation(false);
+        }
+    }
+
+    public void openMenu()
+    {
+        if (this.menu.isExit)
+        {
+            exitShip();
+        } else if(this.menu.isEntrance)
+        {
+            enterShip();
+        }
+        else
+        {
+            this.menu.turnOnMenu();
+            menuOpen = true;
+            menuAvaliable = false;
+        }
+    }
+
+    public void closeMenu()
+    {
+        menuOpen = false;
+        this.menu.turnOffMenu();
+        menuAvaliable = true;
+    }
+
     public void Blind()
     {
         lerpTime = lerpInTime * perc;
@@ -153,6 +204,18 @@ public class Player : MonoBehaviour
         currentLerpTime = 0;
         startIntensity = vg.intensity.value;
         targetIntensity = minIntensity;
+    }
+
+    public void enterShip()
+    {
+        SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
+        Instance.transform.position = new Vector3(0, 0, 0);
+    }
+
+    public void exitShip()
+    {
+        SceneManager.UnloadSceneAsync("Spaceship");
+        //put back outside ship
     }
 
 }
