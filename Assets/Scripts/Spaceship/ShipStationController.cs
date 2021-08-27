@@ -12,6 +12,8 @@ public class ShipStationController : MonoBehaviour
 
     [SerializeField]
     public bool isEntrance;
+
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +26,11 @@ public class ShipStationController : MonoBehaviour
         
     }
 
-    public void turnOnMenu()
+    public void turnOnMenu(Player player)
     {
+        Debug.Log("TURNING ON MENU");
+        this.player = player;
         menu.SetActive(true);
-        //menu.GetComponent<IShipStationMenu>().checkButtonStatus();
     }
 
     public void turnOffMenu()
@@ -38,5 +41,10 @@ public class ShipStationController : MonoBehaviour
     public void highlightStation(bool turnOn)
     {
 
+    }
+
+    public void turnOffPlayerMenu()
+    {
+        player.CloseMenu();
     }
 }

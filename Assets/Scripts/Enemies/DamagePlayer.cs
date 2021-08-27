@@ -27,12 +27,14 @@ public class DamagePlayer : MonoBehaviour
             Vector3 playerPos = otherObject.transform.position;
             Vector3 enemyPos = gameObject.transform.position;
 
-            float distance = Vector3.Distance(playerPos, enemyPos);
+            float distance = Mathf.Abs(Vector3.Distance(playerPos, enemyPos));
 
+            Debug.Log("distance: " + distance + " effect distance: " + effectDistance);
 
             if (distance <= effectDistance)
             {
                 timePassed += Time.deltaTime;
+                Debug.Log("timePassed: " + timePassed);
                 if (timePassed > frequency)
                 {
                     timePassed -= frequency;
@@ -46,19 +48,22 @@ public class DamagePlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D otherObject)
     {
-
-        overlappingPlayer =  otherObject.gameObject.tag == "Player" ? true : false;
-        if (overlappingPlayer)
+        if (otherObject.gameObject.tag == "Player")
         {
+            overlappingPlayer = true;
             this.otherObject = otherObject;
         }
     }
 
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D otherObject)
     {
-        overlappingPlayer = false;
-        this.otherObject = null;
+        if (otherObject.gameObject.tag == "Player")
+        {
+            overlappingPlayer = false;
+            this.otherObject = null;
+        }
+
     }
 
   

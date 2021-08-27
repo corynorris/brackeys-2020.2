@@ -100,7 +100,7 @@ public class ShipPlayerController : MonoBehaviour
     {
         freeToMove = false;
         stop();
-        menu.turnOnMenu();
+        //menu.turnOnMenu();
     }
 
     public void closeMenu()
