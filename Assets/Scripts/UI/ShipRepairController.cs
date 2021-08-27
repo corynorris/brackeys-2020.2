@@ -170,8 +170,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void checkButtonStatus()
     {
-
         if (lvlController.GetShip().GetHullRepairCost() <= lvlController.GetReserveScrap())//cost check
+
         {
             repairButton.enabled = true;
         }

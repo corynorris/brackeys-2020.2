@@ -37,6 +37,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         //UpgradeGoggles();
         //UpgradeTank();
         Render();
+
     }
 
     // Update is called once per frame

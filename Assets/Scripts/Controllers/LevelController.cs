@@ -58,8 +58,10 @@ public class LevelController : MonoBehaviour
     [SerializeField] float batteryPackCost;
     public int foodProcessingLvl { get; set; }
 
-    private static LevelController _instance;
-    public static LevelController GetInstance() { return _instance; }
+    private static GameObject _instance =  null;
+    public static GameObject GetInstance() {
+        return _instance;
+    }
 
     public Ship GetShip()
     {
@@ -151,13 +153,15 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+        
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {
-            _instance = this;
+            _instance = this.gameObject;
         }
         DontDestroyOnLoad(this.gameObject);
     }

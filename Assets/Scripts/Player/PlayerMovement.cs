@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Player player;
     private Animator body;
+    private bool resetMenuKey;
 
     private Vector2 forceModifier = Vector2.zero;
     private void Awake()
@@ -68,12 +69,11 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 player.OpenMenu();
+                
             }
-        }
-
-        if (player.menuOpen)
+        }else if (player.menuOpen)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
             {
                 player.CloseMenu();
             }

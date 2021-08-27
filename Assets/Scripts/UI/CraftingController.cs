@@ -25,8 +25,10 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
     // Start is called before the first frame update
     void Start()
     {
+        //checkButtonStatus();
         lvlController = FindObjectOfType<LevelController>();
         Render();
+
     }
 
     // Update is called once per frame

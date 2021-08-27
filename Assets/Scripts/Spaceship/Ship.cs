@@ -26,8 +26,11 @@ public class Ship : MonoBehaviour
     [SerializeField] float thrustersRepairCost = 30.0f;
     float timeTracker = 0f;
     private bool decaying = false;
-    
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
