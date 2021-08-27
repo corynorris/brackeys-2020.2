@@ -46,13 +46,14 @@ public class LevelController : MonoBehaviour
     [SerializeField] float[] suitTankLvlMultiplier;
     [SerializeField] float[] suitBootsLvlMultiplier;
     [SerializeField] float[] suitGogglesLvlMultiplier;
-           
+    [SerializeField] int[] foodProcessingLvlMultiplier;
+
     [SerializeField] int[] suitTankCost;
     [SerializeField] int[] suitGogglesCost;
     [SerializeField] int[] suitBootsCost;
 
     [SerializeField] int[] foodProcessingCost;
-    [SerializeField] int[] foodProcessingLvlMultiplier;
+    
 
     [SerializeField] float oxygenTankCost;
     [SerializeField] float batteryPackCost;
