@@ -55,24 +55,28 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
             setNextLevelText("Level: " + (lvlController.foodProcessingLvl + 1));
             setNextLevelDesc("One nutrient unit processed into " + lvlController.GetFoodProcessingLvlMultiplier()[lvlController.foodProcessingLvl] + " food units.");
             setNextLevelCost("Upgrade Cost: " + lvlController.NextFoodProcessingLvlCost() + " Scrap");
+
+            if (lvlController.GetReserveScrap() >= lvlController.NextFoodProcessingLvlCost())
+            {
+                upgradeButton.SetActive(true);
+                upgradeErrorNotification.SetActive(false);
+            }
+            else
+            {
+                upgradeButton.SetActive(false);
+                upgradeErrorNotification.SetActive(true);
+            }
+
         }
         else
         {
             setNextLevelText("N/A");
             setNextLevelDesc("Maximum efficiency reached.");
             setNextLevelCost("Maximum efficiency reached.");
+            upgradeButton.SetActive(false);
         }
 
-        if(lvlController.GetReserveScrap() >= lvlController.NextFoodProcessingLvlCost())
-        {
-            upgradeButton.SetActive(true);
-            upgradeErrorNotification.SetActive(false);
-        }
-        else
-        {
-            upgradeButton.SetActive(false);
-            upgradeErrorNotification.SetActive(true);
-        }
+        
 
 
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,13 @@ public class Ship : MonoBehaviour
     [SerializeField] float maxHullHealth = 100.0f;
 
     [SerializeField] float reactorHealth = 0.0f;
+    [SerializeField] float reactorHealthMax = 100.0f;
     [SerializeField] float wingHealth = 0.0f;
+    [SerializeField] float wingHealthMax = 100.0f;
     [SerializeField] float cockpitHealth = 0.0f;
+    [SerializeField] float cockpitHealthMax = 100.0f;
     [SerializeField] float thrustersHealth = 0.0f;
+    [SerializeField] float thrustersHealthMax = 100.0f;
 
     [SerializeField] float hullRepairCost = 1.0f;
     [SerializeField] float reactorRepairCost = 30.0f;
@@ -30,10 +35,32 @@ public class Ship : MonoBehaviour
         ResumeDeacay();
     }
 
+    public bool WingStatus()
+    {
+        return wingHealth == wingHealthMax;
+    }
+
+    public bool CockpitStatus()
+    {
+        return cockpitHealth == cockpitHealthMax;
+    }
+
+    public bool ReactorStatus()
+    {
+        return reactorHealth == reactorHealthMax;
+    }
+
+    public bool ThrustersStatus()
+    {
+        return thrustersHealth == thrustersHealthMax;
+    }
+
+
     public float GetHullRepairCost()
     {
         return hullRepairCost;
     }
+
     public float GetReactorRepairCost()
     {
         return reactorRepairCost;
@@ -91,5 +118,25 @@ public class Ship : MonoBehaviour
     public float GetHealth()
     {
         return hullHealth;
+    }
+
+    internal void RestoreReactorHealthMax()
+    {
+        reactorHealth = reactorHealthMax;
+    }
+
+    internal void RestoreCockpitHealthMax()
+    {
+        cockpitHealth = cockpitHealthMax;
+    }
+
+    internal void RestoreWingsHealthMax()
+    {
+        wingHealth = wingHealthMax;
+    }
+
+    internal void RestoreThrustersHealthMax()
+    {
+        thrustersHealth = thrustersHealthMax;
     }
 }

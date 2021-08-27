@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -114,6 +115,7 @@ public class LevelController : MonoBehaviour
     {
         return foodProcessingLvlMultiplier;
     }
+
 
     public float NextSuiteTankLvlCost()
     {

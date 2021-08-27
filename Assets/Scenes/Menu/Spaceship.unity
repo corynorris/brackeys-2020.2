@@ -1236,10 +1236,14 @@ PrefabInstance:
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1602346105}
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: repairPart4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipRepairController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199981594670351275, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_Text
@@ -6734,10 +6738,14 @@ PrefabInstance:
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1602346105}
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: repairPart1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipRepairController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199981594670351275, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_Text
@@ -6928,10 +6936,14 @@ PrefabInstance:
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1602346105}
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: repairPart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipRepairController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199981594670351275, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_Text
@@ -7504,10 +7516,14 @@ PrefabInstance:
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1602346105}
     - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: repairPart3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199981594670351274, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipRepairController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8199981594670351275, guid: d8b03bb776e73ca40b072a2dcf95bb20, type: 3}
       propertyPath: m_Text
@@ -8873,7 +8889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602346104
 RectTransform:
   m_ObjectHideFlags: 0
