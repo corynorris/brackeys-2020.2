@@ -27,7 +27,6 @@ public class ItemWorld : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("Collided with: " + hit.collider.name);
             return false;
         }
         return true;
