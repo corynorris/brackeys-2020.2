@@ -53,7 +53,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
     // Start is called before the first frame update
     void Start()
     {
-        lvlController = FindObjectOfType<LevelController>();
+        Debug.Log("GETTING LVL CONTROLLER INSTANCE");
+        lvlController = LevelController.GetInstance().GetComponent<LevelController>();
         checkButtonStatus();
     }
 
@@ -116,7 +117,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void checkButtonStatus()
     {
-
+        Debug.Log(lvlController);
         if (repairCost <= lvlController.GetReserveScrap())//cost check
         {
             repairButton.enabled = true;

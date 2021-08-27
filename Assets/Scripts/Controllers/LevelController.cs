@@ -50,19 +50,23 @@ public class LevelController : MonoBehaviour
     public int[] foodProcessingCost { get; set; }
     public string[] foodProcessingDesc { get; set; }
 
-    private static LevelController _instance;
-    public static LevelController GetInstance() { return _instance; }
+    private static GameObject _instance =  null;
+    public static GameObject GetInstance() {
+        return _instance;
+    }
 
 
     private void Awake()
     {
+        
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {
-            _instance = this;
+            _instance = this.gameObject;
         }
         DontDestroyOnLoad(this.gameObject);
     }

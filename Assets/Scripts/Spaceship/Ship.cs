@@ -9,8 +9,11 @@ public class Ship : MonoBehaviour
 
     float timeTracker = 0f;
     private bool decaying = false;
-    
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()

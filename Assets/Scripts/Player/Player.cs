@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     private float startIntensity;
     public bool menuOpen;
     public bool menuAvaliable;
+    private Vector3 oldPos;
 
     private ShipStationController menu;
 
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
             perc = currentLerpTime / lerpTime;
         }
 
-        vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+        //vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
 
     }
 
@@ -193,6 +194,7 @@ public class Player : MonoBehaviour
             this.menu = collision.gameObject.GetComponentInParent<ShipStationController>();
             menuAvaliable = true;
             this.menu.highlightStation(true);
+            Debug.Log("MENU AVLIABLE");
         }
     }
 
@@ -209,6 +211,7 @@ public class Player : MonoBehaviour
 
     public void OpenMenu()
     {
+        Debug.Log("OPENING MENU");
         if (this.menu.isExit)
         {
             ExitShip();
@@ -218,7 +221,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            this.menu.turnOnMenu();
+            this.menu.turnOnMenu(this);
             menuOpen = true;
             menuAvaliable = false;
         }
@@ -252,13 +255,16 @@ public class Player : MonoBehaviour
 
     public void EnterShip()
     {
+        oldPos = Instance.transform.position;
         SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
-        Instance.transform.position = new Vector3(0, 0, 0);
+        Instance.transform.position = new Vector3(-15, -15, 0);
     }
 
     public void ExitShip()
     {
+        Instance.transform.position = oldPos;
         SceneManager.UnloadSceneAsync("Spaceship");
+
         //put back outside ship
     }
 
