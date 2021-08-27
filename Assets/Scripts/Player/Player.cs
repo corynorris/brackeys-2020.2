@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Light });
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
+        inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.HoverBoard });
         health = GetComponent<Health>();
 
 
@@ -102,12 +103,12 @@ public class Player : MonoBehaviour
     {
         switch (item.itemType)
         {
+            case Item.ItemType.HoverBoard:
             case Item.ItemType.Light:
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
                 ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward);
                 return;
             case Item.ItemType.Oxygen:
-
                 health.TakeDamage(10);
                 return;
             default:                 

@@ -17,4 +17,5 @@ public class ItemAssets : MonoBehaviour
     public Sprite nutritionSprite;
     public Sprite lightSprite;
     public Sprite oxygenSprite;
+    public Sprite hoverBoard;
 }
