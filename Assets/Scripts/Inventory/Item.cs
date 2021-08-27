@@ -13,7 +13,8 @@ public class Item
         Scrap,
         Nurition,
         Light,
-        Oxygen
+        Oxygen,
+        HoverBoard
     }
 
 
@@ -36,6 +37,7 @@ public class Item
             case ItemType.Nurition: return ItemAssets.Instance.nutritionSprite;
             case ItemType.Light: return ItemAssets.Instance.lightSprite;
             case ItemType.Oxygen: return ItemAssets.Instance.oxygenSprite;
+            case ItemType.HoverBoard: return ItemAssets.Instance.hoverBoard;
         }
     }
 
@@ -49,6 +51,7 @@ public class Item
             case ItemType.Nurition: return new Color(0.8f, 0.8f, 0.4f);
             case ItemType.Light: return new Color(1f,0f,0f);
             case ItemType.Oxygen: return new Color(0.0f, 0.5f, 0.2f);
+            case ItemType.HoverBoard: return new Color(0.1f, 0.1f, 0.6f);
         }
     }
     public bool IsConsumable()
@@ -60,7 +63,7 @@ public class Item
             case ItemType.Nurition: return false;
             case ItemType.Light: return true;
             case ItemType.Oxygen: return true;
-
+            case ItemType.HoverBoard: return true;
         }
     }
 
@@ -73,7 +76,7 @@ public class Item
             case ItemType.Nurition: return true;
             case ItemType.Light: return false;
             case ItemType.Oxygen: return false;
-
+            case ItemType.HoverBoard: return false;
         }
     }
 

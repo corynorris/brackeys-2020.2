@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,19 +43,113 @@ public class LevelController : MonoBehaviour
     public int suitGogglesLvl { get; set; }
     public int suitBootsLvl { get; set; }
 
-    public int[] suitGogglesCost { get; set; }
-    public int[] suitBootsCost { get; set; }
-    public int[] suitTankCost { get; set; }
+    [SerializeField] float[] suitTankLvlMultiplier;
+    [SerializeField] float[] suitBootsLvlMultiplier;
+    [SerializeField] float[] suitGogglesLvlMultiplier;
+           
+    [SerializeField] int[] suitTankCost;
+    [SerializeField] int[] suitGogglesCost;
+    [SerializeField] int[] suitBootsCost;
 
+    [SerializeField] int[] foodProcessingCost;
+    [SerializeField] int[] foodProcessingLvlMultiplier;
+
+    [SerializeField] float oxygenTankCost;
+    [SerializeField] float batteryPackCost;
     public int foodProcessingLvl { get; set; }
-    public int[] foodProcessingCost { get; set; }
-    public string[] foodProcessingDesc { get; set; }
 
     private static GameObject _instance =  null;
     public static GameObject GetInstance() {
         return _instance;
     }
 
+    public Ship GetShip()
+    {
+        return ship;
+    }
+
+    public float GetOxygenTankCost()
+    {
+        return oxygenTankCost;
+    }
+
+    public float GetBatteryPackCost()
+    {
+        return batteryPackCost;
+    }
+
+    public float[] GetSuiteTankLvlMultiplier()
+    {
+        return suitTankLvlMultiplier;
+    }
+
+    public int[] GetSuiteTankLvlCost()
+    {
+        return suitTankCost;
+    }
+
+    public float[] GetSuiteBootsLvlMultiplier()
+    {
+        return suitBootsLvlMultiplier;
+    }
+
+    public int[] GetSuiteBootsLvlCost()
+    {
+        return suitBootsCost;
+    }
+
+    public float[] GetSuiteGogglesLvlMultiplier()
+    {
+        return suitGogglesLvlMultiplier;
+    }
+
+    public int[] GetSuiteGogglesLvlCost()
+    {
+        return suitGogglesCost;
+    }
+
+    public int[] GetFoodProcessingLvlCost()
+    {
+        return foodProcessingCost;
+    }
+
+    public int[] GetFoodProcessingLvlMultiplier()
+    {
+        return foodProcessingLvlMultiplier;
+    }
+
+
+    public float NextSuiteTankLvlCost()
+    {
+        if (suitTankLvl < suitTankCost.Length)
+            return suitTankCost[suitTankLvl];
+        else
+            return -1;
+    }
+
+    public float NextSuiteBootsLvlCost()
+    {
+        if (suitBootsLvl < suitBootsCost.Length)
+            return suitBootsCost[suitBootsLvl];
+        else
+            return -1;
+    }
+
+    public float NextSuiteGogglesLvlCost()
+    {
+        if (suitGogglesLvl < suitGogglesCost.Length)
+            return suitGogglesCost[suitGogglesLvl];
+        else
+            return -1;
+    }
+
+    public float NextFoodProcessingLvlCost()
+    {
+        if (foodProcessingLvl < foodProcessingCost.Length)
+            return foodProcessingCost[foodProcessingLvl];
+        else
+            return -1;
+    }
 
     private void Awake()
     {
@@ -75,6 +170,10 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         resourceManager = ResourceManager.GetInstance();
+        foodProcessingLvl = 1;
+        suitGogglesLvl = 1;
+        suitBootsLvl = 1;
+        suitTankLvl = 1;
         ResumeFoodConsumption();
         ResumeOxygenConsumption();
         ResumeEnergyConsumption();
@@ -212,9 +311,9 @@ public class LevelController : MonoBehaviour
         return ship.GetHealth();
     }
 
-    public void RestoreShipHealth(float amount)
+    public void RestoreShipHealthMax()
     {
-        //andrew add this
+        ship.RestoreHull();
     }
 
     public float GetPlayerOxygen()

@@ -31,7 +31,6 @@ public class ShipStationController : MonoBehaviour
         Debug.Log("TURNING ON MENU");
         this.player = player;
         menu.SetActive(true);
-        //menu.gameObject.transform.parent.GetComponent<IShipStationMenu>().checkButtonStatus();
     }
 
     public void turnOffMenu()

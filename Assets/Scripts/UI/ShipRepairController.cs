@@ -23,9 +23,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     [SerializeField]
     private Text repairText;
-
-    private float repairCost;
-    private float healthRestored;
+    [SerializeField]
+    private Text hullRepairCost;
 
     [SerializeField]
     private Text part1Text;
@@ -37,49 +36,100 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
     private Text part4Text;
 
     [SerializeField]
-    private GameObject part1Cost;
+    private Text part1Cost;
     [SerializeField]
-    private GameObject part2Cost;
+    private Text part2Cost;
     [SerializeField]
-    private GameObject part3Cost;
+    private Text part3Cost;
     [SerializeField]
-    private GameObject part4Cost;
+    private Text part4Cost;
 
     private float part1RepairCost;
     private float part2RepairCost;
     private float part3RepairCost;
     private float part4RepairCost;
 
+    [SerializeField]
+    private string[] repairCostArray;
+
+    [SerializeField]
+    private string[] partNamesArray;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("GETTING LVL CONTROLLER INSTANCE");
-        lvlController = LevelController.GetInstance().GetComponent<LevelController>();
+        lvlController = FindObjectOfType<LevelController>();
+        Render();
         checkButtonStatus();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Render();
+    }    
 
+    private void Render()
+    {
+        part1Text.text = partNamesArray[1];
+        part2Text.text = partNamesArray[2];
+        part3Text.text = partNamesArray[3];
+        part4Text.text = partNamesArray[4];
+        
+        if(!lvlController.GetShip().ReactorStatus())
+            part1Cost.text = "Repair Cost " + lvlController.GetShip().GetReactorRepairCost();
+        else
+        {
+            part1Cost.text = "Reactor has been fully restored!";
+            part1Button.enabled = false;
+        }
+
+        if (!lvlController.GetShip().ThrustersStatus())
+            part2Cost.text = "Repair Cost " + lvlController.GetShip().GetThrustersRepairCost();
+        else
+        {
+            part2Cost.text = "Thrusters have been fully restored!";
+            part2Button.enabled = false;
+        }
+
+        if (!lvlController.GetShip().CockpitStatus())
+            part3Cost.text = "Repair Cost " + lvlController.GetShip().GetCockpitRepairCost();
+        else
+        {
+            part3Cost.text = "Cockpit has been fully restored!";
+            part3Button.enabled = false;
+        }
+
+        if (!lvlController.GetShip().WingStatus())
+            part4Cost.text = "Repair Cost " + lvlController.GetShip().GetWingRepairCost();
+        else
+        {
+            part4Cost.text = "Wings have been fully restored!";
+            part4Button.enabled = false;
+        }
+        
+        hullRepairCost.text = "Repair Cost " + lvlController.GetShip().GetHullRepairCost();
+        setRepairText(Mathf.RoundToInt(lvlController.GetShipHealth()) + "%");
     }
 
     public void repair()
     {
 
-        if (repairCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetShip().GetHullRepairCost() <= lvlController.GetReserveScrap())
         {
-            lvlController.RemoveReserveScrap(repairCost);
-            lvlController.RestoreShipHealth(healthRestored);
+            lvlController.RemoveReserveScrap(lvlController.GetShip().GetHullRepairCost());
+            lvlController.RestoreShipHealthMax();
         }
         checkButtonStatus();
     }
 
     public void repairPart1()
     {
-        if (part1RepairCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetShip().GetReactorRepairCost() <= lvlController.GetReserveScrap())
         {
-            lvlController.RemoveReserveScrap(part1RepairCost);
+            lvlController.RemoveReserveScrap(lvlController.GetShip().GetReactorRepairCost());
+            lvlController.GetShip().RestoreReactorHealthMax();
             //repair part
         }
         checkButtonStatus();
@@ -87,9 +137,10 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void repairPart2()
     {
-        if (part2RepairCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetShip().GetThrustersRepairCost() <= lvlController.GetReserveScrap())
         {
-            lvlController.RemoveReserveScrap(part2RepairCost);
+            lvlController.RemoveReserveScrap(lvlController.GetShip().GetThrustersRepairCost());
+            lvlController.GetShip().RestoreThrustersHealthMax();
             //repair part
         }
         checkButtonStatus();
@@ -97,9 +148,10 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void repairPart3()
     {
-        if (part3RepairCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetShip().GetCockpitRepairCost() <= lvlController.GetReserveScrap())
         {
-            lvlController.RemoveReserveScrap(part3RepairCost);
+            lvlController.RemoveReserveScrap(lvlController.GetShip().GetCockpitRepairCost());
+            lvlController.GetShip().RestoreCockpitHealthMax();
             //repair part
         }
         checkButtonStatus();
@@ -107,9 +159,10 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void repairPart4()
     {
-        if (part4RepairCost <= lvlController.GetReserveScrap())
+        if (lvlController.GetShip().GetWingRepairCost() <= lvlController.GetReserveScrap())
         {
-            lvlController.RemoveReserveScrap(part4RepairCost);
+            lvlController.RemoveReserveScrap(lvlController.GetShip().GetWingRepairCost());
+            lvlController.GetShip().RestoreWingsHealthMax();
             //repair part
         }
         checkButtonStatus();
@@ -117,16 +170,15 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     public void checkButtonStatus()
     {
-        Debug.Log(lvlController);
-        if (repairCost <= lvlController.GetReserveScrap())//cost check
+        if (lvlController.GetShip().GetHullRepairCost() <= lvlController.GetReserveScrap())//cost check
+
         {
             repairButton.enabled = true;
         }
         else
         {
             repairButton.enabled = false;
-        }
-        setRepairText(lvlController.GetShipHealth()+"/100");
+        }        
 
         if (true){//part 1 check
             part1Button.enabled = true;
@@ -135,7 +187,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         {
             part1Button.enabled = false;
             part1Text.text = "Ship Part1 fixed";
-            part1Cost.SetActive(false);
+            //part1Cost.SetActive(false);
         }
         if (true)
         {//part 2 check
@@ -145,7 +197,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         {
             part2Button.enabled = false;
             part2Text.text = "Ship Part2 fixed";
-            part2Cost.SetActive(false);
+            //part2Cost.SetActive(false);
         }
         if (true)
         {//part 3 check
@@ -155,7 +207,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         {
             part3Button.enabled = false;
             part3Text.text = "Ship Part3 fixed";
-            part3Cost.SetActive(false);
+            //part3Cost.SetActive(false);
         }
         if (true)
         {//part 4 check
@@ -165,7 +217,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         {
             part4Button.enabled = false;
             part4Text.text = "Ship Part4 fixed";
-            part4Cost.SetActive(false);
+            //part4Cost.SetActive(false);
         }
     }
 

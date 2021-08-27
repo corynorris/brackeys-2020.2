@@ -14,6 +14,8 @@ public class ForceApplier : MonoBehaviour
 
     // Start is called before the first frame update
     public float innerRadius = 1f;
+    public float outerRadius = 5f;
+
     public float pullForce = 0.3f;
     public ForceType forceType;
 
@@ -34,9 +36,9 @@ public class ForceApplier : MonoBehaviour
             Vector3 playerPos = playerMovement.transform.position;
             Vector3 enemyPos = gameObject.transform.position;
 
-            float distance = Vector3.Distance(playerPos, enemyPos);
+            float distance = Mathf.Abs(Vector3.Distance(playerPos, enemyPos));
 
-            if (distance > innerRadius)
+            if (distance < outerRadius && distance > innerRadius)
             {
                 Vector3 targetDir = (enemyPos - playerPos).normalized;
                 float distSqrt = Mathf.Pow((distance / maxDistance), 2);
