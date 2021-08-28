@@ -29,10 +29,12 @@ public class Inventory
 
     }
 
-    public void RemoveItemsByType(Item.ItemType type)
+
+    public void RemoveAllItemsByType(Item.ItemType type)
     {
         itemList.RemoveAll(item => item.itemType == type);
-   
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+
     }
 
     public List<Item> GetItemsByType(Item.ItemType type)
