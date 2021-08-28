@@ -9,7 +9,7 @@ public class Ship : MonoBehaviour
     [SerializeField] float decayAmount = 1.0f;
     [SerializeField] float hullHealth = 1.0f;
     [SerializeField] float maxHullHealth = 100.0f;
-
+    [SerializeField] float repairAmount = 10.0f;
     [SerializeField] float reactorHealth = 0.0f;
     [SerializeField] float reactorHealthMax = 100.0f;
     [SerializeField] float wingHealth = 0.0f;
@@ -93,6 +93,10 @@ public class Ship : MonoBehaviour
         {
             timeTracker = timeTracker % decayRate;
             hullHealth = hullHealth - decayAmount;
+            if(hullHealth <= 0)
+            {
+                FindObjectOfType<Player>().Die();
+            }
             /*foreach (ShipPart part in parts)
             {
                 if(part.HasDecay() && part.GetHealth() > 0)
@@ -104,7 +108,7 @@ public class Ship : MonoBehaviour
 
     public void RestoreHull()
     {
-        hullHealth = maxHullHealth;
+        hullHealth = hullHealth + repairAmount ;
     }
 
     public void PauseDeacay()
