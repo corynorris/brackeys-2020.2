@@ -19,12 +19,9 @@ public class Player : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private UI_GameOver gameOver;
 
-        [Header("Inventory")]
+    [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
     private Inventory inventory;
-
-
-
 
     [Header("Blindness")]
     [SerializeField] private GameObject Volume;
@@ -188,8 +185,9 @@ public class Player : MonoBehaviour
             ItemWorld itemWorld = collision.gameObject.GetComponent<ItemWorld>();
             if (itemWorld)
             {
-                inventory.AddItem(itemWorld.GetItem());
-                itemWorld.DestroySelf();
+                if (inventory.AddItem(itemWorld.GetItem())) { 
+                    itemWorld.DestroySelf();
+                }
             }
         }
     }

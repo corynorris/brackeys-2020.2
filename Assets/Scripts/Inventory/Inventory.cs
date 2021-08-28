@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Inventory 
 {
+    private int maxSize = 16;
+
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
     
@@ -16,8 +18,34 @@ public class Inventory
         itemList = new List<Item>();
     }
 
-    public void AddItem(Item item)
+    public int CountItemsByType(Item.ItemType type)
     {
+        int sum = 0;
+        foreach(Item item in GetItemsByType(type))
+        {
+            sum += item.amount;    
+        }
+        return sum;
+
+    }
+
+    public void RemoveItemsByType(Item.ItemType type)
+    {
+        itemList.RemoveAll(item => item.itemType == type);
+   
+    }
+
+    public List<Item> GetItemsByType(Item.ItemType type)
+    {
+        return itemList.FindAll(item => item.itemType == type);
+
+    }
+
+    public bool AddItem(Item item)
+    {
+
+        if (itemList.Count == maxSize) return false;
+
         if (item.IsStackable())
         {
             bool itemAlreadyInInventory = false;
@@ -37,6 +65,7 @@ public class Inventory
         }
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        return true;
     }
 
     public void RemoveItem(Item item)
