@@ -32,13 +32,24 @@ public class UIOverlay : MonoBehaviour
     }
 
     public void PauseGame()
-    {
-        Debug.Log("PAUSING THE GAME");
+    {        
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            //enable player movement
+        }
+        else
+        {
+            Time.timeScale = 0;
+            //disable player movement
+        }
+            
     }
 
     public void ToggleSound()
     {
-        Debug.Log("Toggling Sound");
+        AudioListener al = FindObjectOfType<Camera>().GetComponent<AudioListener>();
+        al.enabled = !al.enabled;        
     }
 
     public void ToggleMenu()
