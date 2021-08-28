@@ -38,10 +38,13 @@ public class Cloud : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D otherObject)
-    {        
+    {
         Player player = otherObject.gameObject.GetComponent<Player>();
         if (player != null)
+        {
+            Debug.Log("calling blind on player");
             player.Blind();
+        }
     }
 
     void OnTriggerExit2D(Collider2D otherObject)

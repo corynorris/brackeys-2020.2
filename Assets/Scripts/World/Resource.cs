@@ -8,11 +8,12 @@ public class Resource : MonoBehaviour
     private Health health;
     private SpriteRenderer sprite;
     private Color originalColor;
-
+    private BoxCollider2D boxCollider;
 
     private void Start()
     {
         sprite = transform.Find("sprite").GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
         originalColor = sprite.color;
         health = GetComponent<Health>();
         health.OnDied += Health_OnDied;
@@ -26,7 +27,9 @@ public class Resource : MonoBehaviour
 
     private void Health_OnDied(object sender, Health.DamageInfoEventArgs eventArgs)
     {
-        ItemWorld.DropItemInDirection(transform.position, item, eventArgs.direction);
+
+        LayerMask mask = LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer));
+        ItemWorld.DropItemInDirection(boxCollider.bounds.center, item, eventArgs.direction, mask);
         Destroy(this.gameObject);
     }
 

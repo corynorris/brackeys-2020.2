@@ -78,7 +78,6 @@ public class Spawner : MonoBehaviour
 
     protected float SpawnDistance(Vector3 spawnPosition)
     {
-      
         return Vector3.Distance(GetSpawnPosition(), spawnPosition);
     }
 
@@ -86,6 +85,7 @@ public class Spawner : MonoBehaviour
     {
         //Position von jedem Floortile ermitteln:
         availablePlaces = new List<Vector3>();
+
 
         for (int n = tileMap.cellBounds.xMin; n < tileMap.cellBounds.xMax; n++)
         {
@@ -96,6 +96,7 @@ public class Spawner : MonoBehaviour
                 Vector3 place = tileMap.CellToWorld(localPlace);
 
                 float spawnDistance = SpawnDistance(place);
+
 
                 if (tileMap.HasTile(localPlace) && spawnDistance > spawnRange.x && spawnDistance < spawnRange.y)
                 {

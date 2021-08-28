@@ -9,24 +9,21 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
+
+
+    private Health health;
 
     [Header("Game Over")]
     [SerializeField] private UI_GameOver gameOver;
 
-    [Header("Inventory")]
+        [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
     private Inventory inventory;
 
-    public static Player Instance { get; private set; }
-    private CircleCollider2D circleCollider;
 
-    private Vector3 forward = Vector3.down;
 
-    private Animator body;
-    private Animator head;
-    private Animator weapon;
-
-    private Health health;
 
     [Header("Blindness")]
     [SerializeField] private GameObject Volume;
@@ -43,11 +40,19 @@ public class Player : MonoBehaviour
     private float targetIntensity = 0.2f;
     private float perc = 0;
     private float startIntensity;
+
+
+    [Header("Some weird menu stuff")]
     public bool menuOpen;
     public bool menuAvaliable;
     private Vector3 oldPos;
 
     private ShipStationController menu;
+    private CircleCollider2D circleCollider;
+    private Vector3 forward = Vector3.down;
+    private Animator body;
+    private Animator head;
+    private Animator weapon;
 
     private void Awake()
     {
@@ -68,8 +73,6 @@ public class Player : MonoBehaviour
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.HoverBoard });
         health = GetComponent<Health>();
-
-
     }
 
     private void Start()
@@ -100,21 +103,23 @@ public class Player : MonoBehaviour
             perc = currentLerpTime / lerpTime;
         }
 
-        //vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+        vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
 
     }
 
     public void UseItem(Item item)
     {
+        LayerMask mask = LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer));
+
         switch (item.itemType)
         {
             case Item.ItemType.HoverBoard:
             case Item.ItemType.Light:
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
-                ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward);
+                ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward, mask);
                 return;
             case Item.ItemType.Oxygen:
-                health.TakeDamage(10);
+                LevelController.GetInstance().AddOxygen(10);
                 return;
             default:                 
                 Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType); 

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Station
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Fog
   - Obstacles
   - Player
-  - 
-  - 
+  - Background
+  - Enemies
   - 
   - 
   - 

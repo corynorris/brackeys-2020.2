@@ -132,13 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e819d1dfad9dc64da339cd630f79d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  driftSpeed: 0
-  probabilityToChangeDirection: 0
-  direction: 0
+  driftSpeed: 1
+  probabilityToChangeDirection: 1
+  direction: 1
   leashObject: {fileID: 0}
   leashSlack: 0
   GaussSigmaFactor: 6
-  directionUpdateFrequency: 1
+  directionUpdateFrequency: 5
 --- !u!60 &3105679526464542035
 PolygonCollider2D:
   m_ObjectHideFlags: 0

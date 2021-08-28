@@ -29,12 +29,10 @@ public class DamagePlayer : MonoBehaviour
 
             float distance = Mathf.Abs(Vector3.Distance(playerPos, enemyPos));
 
-            Debug.Log("distance: " + distance + " effect distance: " + effectDistance);
 
             if (distance <= effectDistance)
             {
                 timePassed += Time.deltaTime;
-                Debug.Log("timePassed: " + timePassed);
                 if (timePassed > frequency)
                 {
                     timePassed -= frequency;

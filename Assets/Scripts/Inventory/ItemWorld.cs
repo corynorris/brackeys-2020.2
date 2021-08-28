@@ -18,43 +18,46 @@ public class ItemWorld : MonoBehaviour
         return itemWorld;
     }
 
-    private static bool IsDirectionFree(Vector3 position, Vector3 direction)
+    private static bool IsDirectionFree(Vector3 position, Vector3 direction, LayerMask ignoreMask)
     {
-        LayerMask mask = LayerMask.GetMask("Obstacles"); // doesn't seem to work? maybe layers are whack
+        //LayerMask mask = LayerMask.GetMask("Obstacles"); // doesn't seem to work? maybe layers are whack
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, 1f, mask);
-        Debug.DrawRay(position, direction, Color.red, 2f);
-
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, 1.5f, ~(ignoreMask));
+             
         if (hit.collider != null)
         {
+            Debug.Log("Collided with: " + hit.collider.name);
+            Debug.DrawRay(position, direction, Color.red, 10f);
             return false;
         }
+
+        Debug.DrawRay(position, direction, Color.green, 10f);
         return true;
     }
 
-    private static Vector3 FindFreeDirection(Vector3 position, ref Vector3 direction)
+    private static Vector3 FindFreeDirection(Vector3 position, ref Vector3 direction, LayerMask ignoreMask)
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
-            bool dropPositionIsFree = IsDirectionFree(position, direction);
+            bool dropPositionIsFree = IsDirectionFree(position, direction, ignoreMask);
             
             if (dropPositionIsFree)
             {
                 return position + direction;
             }
             
-            direction = Quaternion.AngleAxis(-36, new Vector3(0,0,1)) * direction;
+            direction = Quaternion.AngleAxis(45, new Vector3(0,0,1)) * direction;
         }
 
         return position;
     }
 
-    public static ItemWorld DropItemInDirection(Vector3 position, Item item, Vector3 direction)
+    public static ItemWorld DropItemInDirection(Vector3 position, Item item, Vector3 direction, LayerMask ignoreMask)
     {
-        if (!IsDirectionFree(position, direction)) direction = Utils.GetRandomDir();
+        if (!IsDirectionFree(position, direction, ignoreMask)) direction = Utils.GetRandomDir();
 
-        Vector3 dropPosition = FindFreeDirection(position, ref direction);
+        Vector3 dropPosition = FindFreeDirection(position, ref direction, ignoreMask);
         ItemWorld itemWorld = SpawnItemWorld(dropPosition, item);
         itemWorld.GetComponent<Rigidbody2D>().AddForce(direction * 2f, ForceMode2D.Impulse);
 
@@ -63,10 +66,10 @@ public class ItemWorld : MonoBehaviour
     }
 
 
-    public static ItemWorld DropItemRandom(Vector3 position, Item item)
+    public static ItemWorld DropItemRandom(Vector3 position, Item item, LayerMask ignoreMask)
     {
         Vector3 randomDir = Utils.GetRandomDir();
-        return DropItemInDirection(position, item, randomDir);
+        return DropItemInDirection(position, item, randomDir, ignoreMask);
     }
 
     private Item item;

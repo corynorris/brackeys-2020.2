@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+
+    private static LevelController _instance = null;
+
     [SerializeField] Ship ship;
 
     [SerializeField]  private float playerOxygen;
@@ -59,8 +62,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] float batteryPackCost;
     public int foodProcessingLvl { get; set; }
 
-    private static GameObject _instance =  null;
-    public static GameObject GetInstance() {
+    public static LevelController GetInstance() {
         return _instance;
     }
 
@@ -144,6 +146,19 @@ public class LevelController : MonoBehaviour
             return -1;
     }
 
+    public void AddOxygen(int oxygen)
+    {
+        playerOxygen = Mathf.Min(playerOxygen + oxygen, maxPlayerOxygen);
+
+    }
+
+    public void RemoveOxygen(int oxygen)
+    {
+        playerOxygen = Mathf.Max(playerOxygen - oxygen, 0);
+
+    }
+
+
     public float NextFoodProcessingLvlCost()
     {
         if (foodProcessingLvl < foodProcessingCost.Length)
@@ -162,7 +177,7 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            _instance = this.gameObject;
+            _instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
     }
@@ -240,10 +255,10 @@ public class LevelController : MonoBehaviour
         if (energyConsumptionTimeTracker >= energyConsumptionPeriod)
         {
             energyConsumptionTimeTracker = energyConsumptionTimeTracker % energyConsumptionPeriod;
-            if (playerEnergy <= 0)
-                Debug.Log("You Died! -- No Energy :(");
-            else
-                playerEnergy = playerEnergy - energyConsumptionRate;
+            //if (playerEnergy <= 0)
+                //Debug.Log("You Died! -- No Energy :(");
+            //else
+            playerEnergy = playerEnergy - energyConsumptionRate;
         }
     }
 
@@ -293,12 +308,13 @@ public class LevelController : MonoBehaviour
 
     public void AddEnergy(float energy)
     {
-        playerEnergy = Mathf.Max(playerEnergy + energy, maxPlayerEnergy);
+        playerEnergy = Mathf.Min(playerEnergy + energy, maxPlayerEnergy);
+
     }
 
     public void AddFood(float food)
     {
-        playerFood = Mathf.Max(playerFood + food, maxPlayerFood);
+        playerFood = Mathf.Min(playerFood + food, maxPlayerFood);
     }
     public void RefillFood()
     {

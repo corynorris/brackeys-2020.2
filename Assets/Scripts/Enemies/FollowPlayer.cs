@@ -83,7 +83,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (chasing)
+        if (chasing && otherObject != null)
         {
             Vector3 playerPos = otherObject.transform.position;
             Vector3 enemyPos = gameObject.transform.position;

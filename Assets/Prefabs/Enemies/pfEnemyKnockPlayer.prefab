@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726655509349617}
   - component: {fileID: 163726655509349616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8961297521350324443}
   - component: {fileID: 5989964321572155772}
   - component: {fileID: 2065545149}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pfEnemyKnockPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +197,7 @@ MonoBehaviour:
   delay: 0
   moveSpeed: 15
   closestDistance: 0.1
+  stopInFog: 0
 --- !u!114 &5989964321572155772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +228,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectDistance: 2
   destroyAfter: 1
+  destroyOnWallCollision: 1

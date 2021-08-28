@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726655509349617}
   - component: {fileID: 163726655509349616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 9191874077924459695}
   - component: {fileID: 8961297521350324443}
   - component: {fileID: 9079485334918133857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pfEnemyFollower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726656525063930}
   - component: {fileID: 163726656525063929}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
