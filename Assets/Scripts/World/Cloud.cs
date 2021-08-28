@@ -19,6 +19,10 @@ public class Cloud : MonoBehaviour
     void Start()
     {
         spawnPosition = this.transform.position;
+        if (direction == -1)
+        {
+            direction = Random.Range(0, 360);
+        }
     }
 
     // Update is called once per frame
