@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] Ship ship;
 
+    private Player player;
+
     [SerializeField]  private float playerOxygen;
     [SerializeField]  private float maxPlayerOxygen;
 
@@ -193,6 +195,7 @@ public class LevelController : MonoBehaviour
         ResumeFoodConsumption();
         ResumeOxygenConsumption();
         ResumeEnergyConsumption();
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -365,5 +368,24 @@ public class LevelController : MonoBehaviour
         {
             reserveScrap = 0;
         }
-    }    
+    }
+
+    public void ProcessNutrients()
+    {
+        //int foodToAdd = player.GetInventory().NutrientCount() * foodProcessingLvlMultiplier;
+        //AddFood(foodToAdd);
+        //player.GetInventory().RemoveNutrients();
+    }
+
+    public void DepositScrap()
+    {
+        //int scrapToAdd = player.GetInventory().ScrapCount();
+        //AddScrap(scrapToAdd);
+        //player.GetInventory().RemoveScrap();
+    }
+
+    public void Win()
+    {
+
+    }
 }
