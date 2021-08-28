@@ -119,7 +119,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         if (lvlController.GetShip().GetHullRepairCost() <= lvlController.GetReserveScrap())
         {
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetHullRepairCost());
-            lvlController.RestoreShipHealthMax();
+            lvlController.RestoreShipHealth();
+            
         }
         checkButtonStatus();
     }

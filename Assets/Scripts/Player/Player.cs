@@ -129,6 +129,11 @@ public class Player : MonoBehaviour
 
     private void Health_OnDied(object sender, Health.DamageInfoEventArgs e)
     {
+        Die();
+    }
+
+    public void Die()
+    {
         body.SetTrigger("Die");
         gameOver.Show();
     }
@@ -264,9 +269,13 @@ public class Player : MonoBehaviour
     public void EnterShip()
     {
         levelControler.PauseEnergyConsumption();
-        levelControler.ResetOxygen();
-        levelControler.PauseFoodConsumption();
+        levelControler.ResetOxygen();        
         levelControler.PauseOxygenConsumption();
+        levelControler.ProcessNutrients();
+        levelControler.PauseFoodConsumption();
+        levelControler.GetShip().PauseDeacay();
+        
+        levelControler.DepositScrap();
         oldPos = Instance.transform.position;
         SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
         Instance.transform.position = new Vector3(-15, -15, 0);
@@ -277,8 +286,11 @@ public class Player : MonoBehaviour
         Instance.transform.position = oldPos;
         SceneManager.UnloadSceneAsync("Spaceship");
         levelControler.ResumeEnergyConsumption();
-        levelControler.ResumeFoodConsumption();
+        levelControler.RefillFood();
+        levelControler.ResumeFoodConsumption();        
         levelControler.ResumeOxygenConsumption();
+        levelControler.GetShip().ResumeDeacay();
+        FindObjectOfType<SpawnManager>().RestartSpawners();
         //put back outside ship
     }
 

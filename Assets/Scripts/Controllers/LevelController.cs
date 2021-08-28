@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
 
     private Player player;
 
+    [SerializeField] float foodConsumptionRatio = 10;
+
     [SerializeField]  private float playerOxygen;
     [SerializeField]  private float maxPlayerOxygen;
 
@@ -148,9 +150,14 @@ public class LevelController : MonoBehaviour
             return -1;
     }
 
+    public float GetMaxOxygen()
+    {
+        return maxPlayerOxygen * suitTankLvlMultiplier[suitTankLvl - 1];
+    }
+
     public void AddOxygen(int oxygen)
     {
-        playerOxygen = Mathf.Min(playerOxygen + oxygen, maxPlayerOxygen);
+        playerOxygen = Mathf.Min(playerOxygen + oxygen, GetMaxOxygen());
 
     }
 
@@ -231,7 +238,7 @@ public class LevelController : MonoBehaviour
             foodConsumptionTimeTracker = foodConsumptionTimeTracker % foodConsumptionPeriod;
             
             if (playerFood <= 0)
-                Debug.Log("You Died! -- No Food :(");
+                player.Die();
             else
                 playerFood = playerFood - foodConsumptionRate;
         }
@@ -243,9 +250,9 @@ public class LevelController : MonoBehaviour
 
         if (oxygenConsumptionTimeTracker >= oxygenConsumptionPeriod)
         {
-            oxygenConsumptionTimeTracker = oxygenConsumptionTimeTracker % oxygenConsumptionPeriod;            
+            oxygenConsumptionTimeTracker = oxygenConsumptionTimeTracker % oxygenConsumptionPeriod;
             if (playerOxygen <= 0)
-                Debug.Log("You Died! -- No O2 :(");
+                player.Die();
             else
                 playerOxygen = playerOxygen - oxygenConsumptionRate;
         }
@@ -301,7 +308,7 @@ public class LevelController : MonoBehaviour
 
     public void ResetOxygen()
     {
-        playerOxygen = maxPlayerOxygen;
+        playerOxygen = GetMaxOxygen();
     }
 
     public void ResetEnergy()
@@ -319,10 +326,11 @@ public class LevelController : MonoBehaviour
     {
         playerFood = Mathf.Min(playerFood + food, maxPlayerFood);
     }
+        
     public void RefillFood()
     {
-        float consumeAmount = Mathf.Min(maxPlayerFood - playerFood, reserveFood);
-        reserveFood = reserveFood - consumeAmount;
+        float consumeAmount = Mathf.Min(maxPlayerFood - playerFood, reserveFood * foodConsumptionRatio);
+        reserveFood = reserveFood - consumeAmount / foodConsumptionRatio;
         AddFood(consumeAmount);        
     }
 
@@ -331,10 +339,10 @@ public class LevelController : MonoBehaviour
         return ship.GetHealth();
     }
 
-    public void RestoreShipHealthMax()
+    public void RestoreShipHealth()
     {
         ship.RestoreHull();
-    }
+    }  
 
     public float GetPlayerOxygen()
     {
@@ -372,20 +380,20 @@ public class LevelController : MonoBehaviour
 
     public void ProcessNutrients()
     {
-        //int foodToAdd = player.GetInventory().NutrientCount() * foodProcessingLvlMultiplier;
-        //AddFood(foodToAdd);
-        //player.GetInventory().RemoveNutrients();
+        int nurition = player.GetInventory().CountItemsByType(Item.ItemType.Nurition);
+        reserveFood = reserveFood + (nurition * foodProcessingLvlMultiplier[foodProcessingLvl-1]);        
+        player.GetInventory().RemoveAllItemsByType(Item.ItemType.Nurition);
+        
     }
 
     public void DepositScrap()
-    {
-        //int scrapToAdd = player.GetInventory().ScrapCount();
-        //AddScrap(scrapToAdd);
-        //player.GetInventory().RemoveScrap();
+    {        
+        reserveScrap = reserveScrap + (player.GetInventory().CountItemsByType(Item.ItemType.Scrap));        
+        player.GetInventory().RemoveAllItemsByType(Item.ItemType.Scrap);
     }
 
     public void Win()
     {
 
-    }
+    }    
 }
