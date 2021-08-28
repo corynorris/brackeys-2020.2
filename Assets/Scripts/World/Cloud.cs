@@ -19,6 +19,10 @@ public class Cloud : MonoBehaviour
     void Start()
     {
         spawnPosition = this.transform.position;
+        if(direction == -1)
+        {
+            direction = Random.Range(0, 360);
+        }
     }
 
     // Update is called once per frame
@@ -69,7 +73,7 @@ public class Cloud : MonoBehaviour
         Vector3 leashPosition = GetLeashPosition();
 
         if(GetLeashDistance() > leashSlack)
-        {
+        {            
             direction = Mathf.Atan2(leashPosition.y - gameObject.transform.position.y, leashPosition.x - gameObject.transform.position.x) * 180 / Mathf.PI;
             if (direction < 0)
                 direction += 360;                        
@@ -83,7 +87,7 @@ public class Cloud : MonoBehaviour
 
     private float GetLeashDistance()
     {
-        Vector3 leashPosition = GetLeashPosition();
+        Vector3 leashPosition = GetLeashPosition();        
         return Mathf.Abs(gameObject.transform.position.x - leashPosition.x) + Mathf.Abs(gameObject.transform.position.y - leashPosition.y);
     }
 

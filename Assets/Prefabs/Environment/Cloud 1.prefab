@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   driftSpeed: 1
-  probabilityToChangeDirection: 1
-  direction: 1
+  probabilityToChangeDirection: 10
+  direction: -1
   leashObject: {fileID: 0}
   leashSlack: 20
   GaussSigmaFactor: 6
