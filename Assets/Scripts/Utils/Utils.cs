@@ -10,7 +10,7 @@ public class Utils
         return UnityEngine.Random.insideUnitCircle.normalized;
     }
 
-    public static AudioSource AddAudioNoFalloff(GameObject gameObject, AudioClip clip, bool loop, bool playAwake, float vol, float pitch, float minRange = 100, float maxRange = 100)
+    public static AudioSource AddAudioNoFalloff(GameObject gameObject, AudioClip clip, bool loop, bool playAwake, float vol, float pitch, float minRange = 1000, float maxRange = 1000)
     {
         AudioSource newAudio = gameObject.AddComponent<AudioSource>();
         newAudio.clip = clip;
@@ -24,6 +24,15 @@ public class Utils
         newAudio.maxDistance = maxRange;
 
         return newAudio;
+    }
+
+    public static void spawnAudio(GameObject gameObject, AudioClip clip, float volume = 1)
+    {
+        GameObject audioObject = new GameObject();
+        audioObject.transform.position = gameObject.transform.position;        
+        AddAudioNoFalloff(audioObject, clip, false, true, volume, 1);
+        audioObject.GetComponent<AudioSource>().Play();
+        GameObject.Destroy(audioObject,clip.length);
     }
 
     public static float GetAngleFromVector(Vector3 vector)

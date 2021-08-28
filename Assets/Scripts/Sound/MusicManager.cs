@@ -8,22 +8,27 @@ public class MusicManager : MonoBehaviour
     private static MusicManager _instance = null;
     [SerializeField]
     private AudioClip menuMuisc;
+    [SerializeField]
+    private AudioClip ambienceMuisc;
 
     private AudioClip newMusic;
 
     [SerializeField]
     private float volume;
 
-    private float currentVolume;
+    [SerializeField]
+    private float ambienceVolume;
 
+    private float currentVolume;
     private AudioSource musicSource;
+    private AudioSource ambienceSource;
 
     private bool fadingOut;
     private bool fadingIn;
     // Start is called before the first frame update
     void Awake()
     {
- 
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -44,17 +49,20 @@ public class MusicManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("MusicVolume", 1f);
         }
-       
-        
+
+
 
     }
 
     void Start()
     {
-        float globalVolume = PlayerPrefs.GetFloat("MusicVolume");
-        musicSource = Utils.AddAudioNoFalloff(gameObject, menuMuisc, true, false, volume * globalVolume, 1);
-        currentVolume = musicSource.volume;
+        musicSource = Utils.AddAudioNoFalloff(gameObject, menuMuisc, true, false, volume, 1);
+
         musicSource.Play();
+
+        ambienceSource = Utils.AddAudioNoFalloff(gameObject, ambienceMuisc, true, false, ambienceVolume, 1);
+        currentVolume = ambienceSource.volume;
+        ambienceSource.Play();
     }
 
     public static MusicManager getInstance()
@@ -64,11 +72,11 @@ public class MusicManager : MonoBehaviour
 
     public void updateMusic(AudioClip music)
     {
-        if (musicSource.clip != music)
+        if (ambienceSource.clip != music)
         {
             newMusic = music;
             fadingOut = true;
-            
+
         }
     }
 
@@ -92,14 +100,15 @@ public class MusicManager : MonoBehaviour
         if (fadingOut)
         {
             musicSource.volume -= 0.01f;
-            if(musicSource.volume <= 0)
+            if (musicSource.volume <= 0)
             {
                 fadingIn = true;
                 fadingOut = false;
                 musicSource.clip = newMusic;
                 musicSource.Play();
             }
-        }else if (fadingIn)
+        }
+        else if (fadingIn)
         {
             musicSource.volume += 0.01f;
             if (musicSource.volume >= currentVolume)
