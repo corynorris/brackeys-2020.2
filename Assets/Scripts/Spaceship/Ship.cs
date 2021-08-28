@@ -108,7 +108,8 @@ public class Ship : MonoBehaviour
 
     public void RestoreHull()
     {
-        hullHealth = hullHealth + repairAmount ;
+        
+        hullHealth = Mathf.Min(hullHealth + repairAmount, maxHullHealth);
     }
 
     public void PauseDeacay()
