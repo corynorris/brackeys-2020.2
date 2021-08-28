@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-
+    [SerializeField]
+    LevelController levelControler;
 
     private Health health;
 
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
         Instance = this;
         inventory = new Inventory(UseItem);
         circleCollider = GetComponent<CircleCollider2D>();
-
+        
         // Get all animators
         body = transform.Find("body").GetComponent<Animator>();
         head = transform.Find("head").GetComponent<Animator>();
@@ -84,8 +85,7 @@ public class Player : MonoBehaviour
         v.profile.TryGet(out vg);
 
         health.OnTookDamage += Health_OnTookDamage;
-        health.OnDied += Health_OnDied;
-
+        health.OnDied += Health_OnDied;        
     }
 
     private void Update()
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                 ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward, mask);
                 return;
             case Item.ItemType.Oxygen:
-                LevelController.GetInstance().AddOxygen(10);
+                LevelController.GetInstance().ResetOxygen();
                 return;
             default:                 
                 Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType); 
@@ -262,6 +262,10 @@ public class Player : MonoBehaviour
 
     public void EnterShip()
     {
+        levelControler.PauseEnergyConsumption();
+        levelControler.ResetOxygen();
+        levelControler.PauseFoodConsumption();
+        levelControler.PauseOxygenConsumption();
         oldPos = Instance.transform.position;
         SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
         Instance.transform.position = new Vector3(-15, -15, 0);
@@ -271,8 +275,15 @@ public class Player : MonoBehaviour
     {
         Instance.transform.position = oldPos;
         SceneManager.UnloadSceneAsync("Spaceship");
-
+        levelControler.ResumeEnergyConsumption();
+        levelControler.ResumeFoodConsumption();
+        levelControler.ResumeOxygenConsumption();
         //put back outside ship
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
 }
