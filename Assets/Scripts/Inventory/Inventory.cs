@@ -27,6 +27,7 @@ public class Inventory
         if (item != null)
         {
             UseItem(item);
+            RemoveItem(item);
             return true;
         }
 
