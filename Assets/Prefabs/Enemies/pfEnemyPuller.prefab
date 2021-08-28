@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726655509349617}
   - component: {fileID: 163726655509349616}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 819342035646696163}
   - component: {fileID: 2542186366863269216}
   - component: {fileID: 8672675765969442435}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pfEnemyPuller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726656525063930}
   - component: {fileID: 163726656525063929}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

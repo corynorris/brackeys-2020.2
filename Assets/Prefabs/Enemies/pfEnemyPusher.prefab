@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726655509349617}
   - component: {fileID: 1786094491191605287}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 163726655640329158}
   - component: {fileID: 163726655640329155}
   - component: {fileID: 819342035646696163}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pfEnemyPusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 163726656525063930}
   - component: {fileID: 163726656525063929}
   - component: {fileID: 3944541679516519816}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

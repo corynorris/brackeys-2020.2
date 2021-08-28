@@ -19,12 +19,20 @@ public class Player : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private UI_GameOver gameOver;
 
-        [Header("Inventory")]
+    [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
     private Inventory inventory;
 
+    public static Player Instance { get; private set; }
+    private CircleCollider2D circleCollider;
 
+    private Vector3 forward = Vector3.down;
 
+    private Animator body;
+    private Animator head;
+    private Animator weapon;
+
+    private Health health;
 
     [Header("Blindness")]
     [SerializeField] private GameObject Volume;
@@ -41,19 +49,11 @@ public class Player : MonoBehaviour
     private float targetIntensity = 0.2f;
     private float perc = 0;
     private float startIntensity;
-
-
-    [Header("Some weird menu stuff")]
     public bool menuOpen;
     public bool menuAvaliable;
     private Vector3 oldPos;
 
     private ShipStationController menu;
-    private CircleCollider2D circleCollider;
-    private Vector3 forward = Vector3.down;
-    private Animator body;
-    private Animator head;
-    private Animator weapon;
 
     private void Awake()
     {
@@ -74,11 +74,13 @@ public class Player : MonoBehaviour
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.HoverBoard });
         health = GetComponent<Health>();
+
+
     }
 
     private void Start()
     {
-        uiInventory.SetInventory(inventory);                    
+        uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
         v = Volume.GetComponent<Volume>();
@@ -103,26 +105,24 @@ public class Player : MonoBehaviour
             perc = currentLerpTime / lerpTime;
         }
 
-        vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+        //vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
 
     }
 
     public void UseItem(Item item)
     {
-        LayerMask mask = LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer));
-
         switch (item.itemType)
         {
             case Item.ItemType.HoverBoard:
             case Item.ItemType.Light:
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
-                ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward, mask);
+                ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward);
                 return;
             case Item.ItemType.Oxygen:
                 LevelController.GetInstance().ResetOxygen();
                 return;
-            default:                 
-                Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType); 
+            default:
+                Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType);
                 return;
         }
     }
@@ -184,7 +184,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Item") {
+        if (collision.gameObject.tag == "Item")
+        {
             ItemWorld itemWorld = collision.gameObject.GetComponent<ItemWorld>();
             if (itemWorld)
             {
@@ -209,7 +210,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Station")
         {
-            CloseMenu();            
+            CloseMenu();
             menuAvaliable = false;
             this.menu.highlightStation(false);
             this.menu = null;
@@ -222,7 +223,8 @@ public class Player : MonoBehaviour
         if (this.menu.isExit)
         {
             ExitShip();
-        } else if(this.menu.isEntrance)
+        }
+        else if (this.menu.isEntrance)
         {
             EnterShip();
         }
@@ -236,12 +238,12 @@ public class Player : MonoBehaviour
 
     public void CloseMenu()
     {
-        if (! this.menu.isExit && !this.menu.isEntrance)
+        if (!this.menu.isExit && !this.menu.isEntrance)
         {
             menuOpen = false;
             this.menu.turnOffMenu();
             menuAvaliable = true;
-        }        
+        }
     }
 
     public void Blind()
