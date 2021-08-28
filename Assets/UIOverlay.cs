@@ -58,6 +58,7 @@ public class UIOverlay : MonoBehaviour
     public void UseOxygen()
     {
         //player.UseOxygen();
-        Debug.Log("Using Oxygen");
+        Player.Instance.GetInventory().UseItemByType(Item.ItemType.Oxygen);
+
     }
 }

@@ -30,14 +30,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float minIntensity = 0.2f;
     [SerializeField] private float maxIntensity = 1f;
 
-    private Volume volume;
+    private Volume volume;  
     private Volume v;
     private Vignette vg;
     private float lerpTime = 1;
-    private float currentLerpTime;
+    private float currentLerpTime = 0;
     private float targetIntensity = 0.2f;
     private float perc = 0;
-    private float startIntensity;
+    private float startIntensity = 0.2f;
 
 
     [Header("Some weird menu stuff")]
@@ -100,7 +100,10 @@ public class Player : MonoBehaviour
             perc = currentLerpTime / lerpTime;
         }
 
-        vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+      
+        if (vg != null) { 
+            vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
+        }
 
     }
 
