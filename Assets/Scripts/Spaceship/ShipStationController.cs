@@ -42,7 +42,7 @@ public class ShipStationController : MonoBehaviour
     }
 
     public void highlightStation(bool turnOn)
-    {        
+    {
         highlight.SetActive(turnOn);
     }
 

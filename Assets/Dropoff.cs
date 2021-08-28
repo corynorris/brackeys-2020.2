@@ -21,17 +21,12 @@ public class Dropoff : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otherObject)
     {
-        levelControler.PauseEnergyConsumption();
-        levelControler.ResetOxygen();
-        levelControler.PauseFoodConsumption();
-        levelControler.PauseOxygenConsumption();
+
     }
 
     void OnTriggerExit2D(Collider2D otherObject)
     {
-        levelControler.ResumeEnergyConsumption();
-        levelControler.ResumeFoodConsumption();
-        levelControler.ResumeOxygenConsumption();
+  
     }
 
 }

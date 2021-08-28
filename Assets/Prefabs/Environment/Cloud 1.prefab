@@ -136,7 +136,7 @@ MonoBehaviour:
   probabilityToChangeDirection: 0
   direction: 0
   leashObject: {fileID: 0}
-  leashSlack: 0
+  leashSlack: 20
   GaussSigmaFactor: 6
   directionUpdateFrequency: 1
 --- !u!60 &3105679526464542035
