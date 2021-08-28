@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory 
@@ -16,6 +17,20 @@ public class Inventory
     {
         this.useItemAction = useItemAction;
         itemList = new List<Item>();
+    }
+
+    
+    public bool useItemByType(Item.ItemType type)
+    {
+        Item item = itemList.Where(item => item.itemType == type).FirstOrDefault();
+
+        if (item != null)
+        {
+            UseItem(item);
+            return true;
+        }
+
+        return false;
     }
 
     public int CountItemsByType(Item.ItemType type)
