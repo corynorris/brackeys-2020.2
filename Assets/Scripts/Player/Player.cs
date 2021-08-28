@@ -9,12 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-
-    [SerializeField]
-    LevelController levelControler;
-
-    private Health health;
 
     [Header("Game Over")]
     [SerializeField] private UI_GameOver gameOver;
@@ -60,7 +54,7 @@ public class Player : MonoBehaviour
         Instance = this;
         inventory = new Inventory(UseItem);
         circleCollider = GetComponent<CircleCollider2D>();
-        
+
         // Get all animators
         body = transform.Find("body").GetComponent<Animator>();
         head = transform.Find("head").GetComponent<Animator>();
@@ -80,14 +74,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        uiInventory.SetInventory(inventory);                    
+        uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
         v = Volume.GetComponent<Volume>();
         v.profile.TryGet(out vg);
 
         health.OnTookDamage += Health_OnTookDamage;
-        health.OnDied += Health_OnDied;        
+        health.OnDied += Health_OnDied;
     }
 
     private void Update()
@@ -119,10 +113,10 @@ public class Player : MonoBehaviour
                 ItemWorld.DropItemInDirection(GetCenter(), duplicateItem, forward);
                 return;
             case Item.ItemType.Oxygen:
-                LevelController.GetInstance().ResetOxygen();
+                health.TakeDamage(10);
                 return;
-            default:                 
-                Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType); 
+            default:
+                Debug.LogWarning("Add logic to use item in Player `UseItem` function for item: " + item.itemType);
                 return;
         }
     }
@@ -184,7 +178,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Item") {
+        if (collision.gameObject.tag == "Item")
+        {
             ItemWorld itemWorld = collision.gameObject.GetComponent<ItemWorld>();
             if (itemWorld)
             {
@@ -209,7 +204,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Station")
         {
-            CloseMenu();            
+            CloseMenu();
             menuAvaliable = false;
             this.menu.highlightStation(false);
             this.menu = null;
@@ -222,7 +217,8 @@ public class Player : MonoBehaviour
         if (this.menu.isExit)
         {
             ExitShip();
-        } else if(this.menu.isEntrance)
+        }
+        else if (this.menu.isEntrance)
         {
             EnterShip();
         }
@@ -236,12 +232,12 @@ public class Player : MonoBehaviour
 
     public void CloseMenu()
     {
-        if (! this.menu.isExit && !this.menu.isEntrance)
+        if (!this.menu.isExit && !this.menu.isEntrance)
         {
             menuOpen = false;
             this.menu.turnOffMenu();
             menuAvaliable = true;
-        }        
+        }
     }
 
     public void Blind()
