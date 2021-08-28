@@ -20,7 +20,7 @@ public class Inventory
     }
 
     
-    public bool useItemByType(Item.ItemType type)
+    public bool UseItemByType(Item.ItemType type)
     {
         Item item = itemList.Where(item => item.itemType == type).FirstOrDefault();
 
