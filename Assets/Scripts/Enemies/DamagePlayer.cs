@@ -5,7 +5,6 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Enemy))]
-[RequireComponent(typeof(CircleCollider2D))]
 public class DamagePlayer : MonoBehaviour
 {
 
@@ -19,6 +18,36 @@ public class DamagePlayer : MonoBehaviour
     private Collider2D otherObject;
 
     public event EventHandler OnDamagedPlayer;
+    public Detector detector;
+
+    private void Start()
+    {
+        if (!detector) Debug.Log(this.gameObject.name + " needs a detector!");
+
+        detector.OnDetectedTagStart += Detector_OnDetectedTagStart;
+        detector.OnDetectedTagStop += Detector_OnDetectedTagStop;
+    }
+
+
+    private void OnDestroy()
+    {
+        detector.OnDetectedTagStart -= Detector_OnDetectedTagStart;
+        detector.OnDetectedTagStop -= Detector_OnDetectedTagStop;
+    }
+
+
+    private void Detector_OnDetectedTagStart(object sender, Detector.DetectionInfoEventArgs e)
+    {
+        otherObject = e.detected;
+        overlappingPlayer = true;
+    }
+
+    private void Detector_OnDetectedTagStop(object sender, Detector.DetectionInfoEventArgs e)
+    {
+        otherObject = null;
+        overlappingPlayer = false;
+    }
+
 
     private void Update()
     {
@@ -44,25 +73,5 @@ public class DamagePlayer : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D otherObject)
-    {
-        if (otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = true;
-            this.otherObject = otherObject;
-        }
-    }
 
-
-    private void OnTriggerExit2D(Collider2D otherObject)
-    {
-        if (otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = false;
-            this.otherObject = null;
-        }
-
-    }
-
-  
 }

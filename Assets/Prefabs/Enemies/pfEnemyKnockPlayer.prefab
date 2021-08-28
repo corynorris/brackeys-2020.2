@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 163726655640329156}
   - component: {fileID: 575035368158352289}
   - component: {fileID: 8961297521350324443}
-  - component: {fileID: 5989964321572155772}
   - component: {fileID: 2065545149}
+  - component: {fileID: 4892825496591081191}
   m_Layer: 10
   m_Name: pfEnemyKnockPlayer
   m_TagString: Untagged
@@ -117,6 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 163726655509349617}
+  - {fileID: 4202743381079021468}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,7 +136,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 0.5
 --- !u!50 &163726655640329155
 Rigidbody2D:
   serializedVersion: 4
@@ -194,26 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d971bf79773366443ac148f461d8a9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0
   moveSpeed: 15
-  closestDistance: 0.1
-  stopInFog: 0
---- !u!114 &5989964321572155772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163726655640329159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1886a2dbce40b1c4fa512970c76706d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  innerRadius: 0
-  outerRadius: 2
-  pullForce: -20
-  forceType: 0
+  closestDistance: 0
+  detector: {fileID: 556597757221025149}
 --- !u!114 &2065545149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,3 +213,81 @@ MonoBehaviour:
   effectDistance: 2
   destroyAfter: 1
   destroyOnWallCollision: 1
+--- !u!114 &4892825496591081191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163726655640329159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1886a2dbce40b1c4fa512970c76706d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  innerRadius: 1
+  outerRadius: 1
+  pullForce: -10
+  forceType: 0
+--- !u!1 &5984643536853515573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4202743381079021468}
+  - component: {fileID: 1069992815677985320}
+  - component: {fileID: 556597757221025149}
+  m_Layer: 0
+  m_Name: detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4202743381079021468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984643536853515573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 163726655640329157}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1069992815677985320
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984643536853515573}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 10
+--- !u!114 &556597757221025149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984643536853515573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41db0ec4fa792c4459bf2a72cb169921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectTag: Player
+  stopDetectingInFog: 0

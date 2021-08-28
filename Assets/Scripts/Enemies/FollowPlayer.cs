@@ -4,82 +4,46 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class FollowPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float delay = 1f;
     public float moveSpeed = 1f;
     public float closestDistance = 1f;
-    public bool stopInFog = false;
+    public Detector detector;
 
-    private float timePassed = 0f;
-    private bool overlappingPlayer = false;
-    private Collider2D otherObject;
-    private Rigidbody2D rb;
-    private bool sleeping = false;
     private bool chasing = false;
+  
+    private Rigidbody2D rb;
+    private Collider2D otherObject;
 
     private void Start()
     {
+        if (!detector) Debug.Log(this.gameObject.name + " needs a detector!");
+
         rb = GetComponent<Rigidbody2D>();
-
+        detector.OnDetectedTagStart += Detector_OnDetectedTagStart;
+        detector.OnDetectedTagStop += Detector_OnDetectedTagStop;
     }
-    private void Update()
+    private void OnDestroy()
     {
-        if (overlappingPlayer)
-        {
-            Vector3 playerPos = otherObject.transform.position;
-            Vector3 enemyPos = gameObject.transform.position;
-
-            float distance = Vector3.Distance(playerPos, enemyPos);
-     
-            timePassed += Time.deltaTime;
-            
-            if (timePassed > delay)
-            {
-                chasing = true;
-            }   
-            
-        } else
-        {
-            timePassed = 0f;
-            chasing = false;
-        }
+        detector.OnDetectedTagStart -= Detector_OnDetectedTagStart;
+        detector.OnDetectedTagStop -= Detector_OnDetectedTagStop;
     }
 
-    private void OnTriggerEnter2D(Collider2D otherObject)
+
+    private void Detector_OnDetectedTagStart(object sender, Detector.DetectionInfoEventArgs e)
     {
-        if (stopInFog && otherObject.gameObject.tag == "Fog")
-        {
-            overlappingPlayer = false;
-            this.otherObject = null;
-            sleeping = true;
-        }
-
-
-        if (!sleeping && otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = true;
-            this.otherObject = otherObject;
-        }
+        Debug.Log("Started chasing");
+        otherObject = e.detected;
+        chasing = true;
     }
 
-
-    private void OnTriggerExit2D(Collider2D otherObject)
+    private void Detector_OnDetectedTagStop(object sender, Detector.DetectionInfoEventArgs e)
     {
-        if (otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = false;
-            this.otherObject = null;
-        }
-
-        if (otherObject.gameObject.tag == "Fog")
-        {
-            sleeping = false;
-        }
-
+        Debug.Log("Stopped chasing");
+        otherObject = null;
+        chasing = false;
     }
+  
 
     private void FixedUpdate()
     {
@@ -98,4 +62,6 @@ public class FollowPlayer : MonoBehaviour
         
         }
     }
+
+
 }

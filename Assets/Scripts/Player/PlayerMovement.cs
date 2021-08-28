@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private bool resetMenuKey;
 
     private Vector2 forceModifier = Vector2.zero;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
