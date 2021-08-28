@@ -14,6 +14,9 @@ public class ShipStationController : MonoBehaviour
     public bool isEntrance;
 
     private Player player;
+
+    [SerializeField]
+    private GameObject highlight;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,7 @@ public class ShipStationController : MonoBehaviour
 
     public void highlightStation(bool turnOn)
     {
-
+        highlight.SetActive(turnOn);
     }
 
     public void turnOffPlayerMenu()
