@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4208252789152610100}
   - component: {fileID: 4208252789152610101}
   - component: {fileID: 2018584030203809388}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: pfResource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4208252789660997932}
   - component: {fileID: 4208252789660997923}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

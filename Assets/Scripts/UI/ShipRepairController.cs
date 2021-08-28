@@ -72,10 +72,10 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
 
     private void Render()
     {
-        part1Text.text = partNamesArray[0];
-        part2Text.text = partNamesArray[1];
-        part3Text.text = partNamesArray[2];
-        part4Text.text = partNamesArray[3];
+        part1Text.text = partNamesArray[1];
+        part2Text.text = partNamesArray[2];
+        part3Text.text = partNamesArray[3];
+        part4Text.text = partNamesArray[4];
         
         if(!lvlController.GetShip().ReactorStatus())
             part1Cost.text = "Repair Cost " + lvlController.GetShip().GetReactorRepairCost();

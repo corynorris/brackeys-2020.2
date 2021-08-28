@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163726655509349617}
   - component: {fileID: 1786094491191605287}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5683236341754932046}
   - component: {fileID: 5888648851809173453}
   - component: {fileID: 7541470310164677991}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pfEnemyFakeRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

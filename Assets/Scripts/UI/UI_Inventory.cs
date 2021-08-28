@@ -80,8 +80,6 @@ public class UI_Inventory : MonoBehaviour
 
         foreach (Item item in inventory.GetItemList())
         {
-            LayerMask mask = LayerMask.GetMask("Player");
-
             RectTransform rectTransform = Instantiate(itemSlotTemplate, itemContainer).GetComponent<RectTransform>();
             rectTransform.gameObject.SetActive(true);
 
@@ -92,7 +90,7 @@ public class UI_Inventory : MonoBehaviour
 
             rectTransform.GetComponent<UI_ClickController>().onRight.AddListener(() => {
                 Item duplicateItem = new Item { itemType = item.itemType, amount = item.amount };
-                ItemWorld.DropItemRandom(player.GetCenter(), duplicateItem, mask);
+                ItemWorld.DropItemRandom(player.GetCenter(), duplicateItem);
                 inventory.RemoveItem(item);
             });
 
