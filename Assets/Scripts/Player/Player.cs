@@ -62,7 +62,6 @@ public class Player : MonoBehaviour
         body = transform.Find("body").GetComponent<Animator>();
         head = transform.Find("head").GetComponent<Animator>();
         weapon = transform.Find("weapon").GetComponent<Animator>();
-        volume = FindObjectOfType<Volume>();
 
 
         // Add some items
@@ -78,6 +77,7 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);                    
         uiInventory.SetPlayer(this);
 
+        volume = FindObjectOfType<Volume>();
         v = Volume.GetComponent<Volume>();
         v.profile.TryGet(out vg);
 
