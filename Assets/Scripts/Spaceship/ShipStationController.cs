@@ -20,13 +20,13 @@ public class ShipStationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void turnOnMenu(Player player)
@@ -42,7 +42,7 @@ public class ShipStationController : MonoBehaviour
     }
 
     public void highlightStation(bool turnOn)
-    {        
+    {
         highlight.SetActive(turnOn);
     }
 
