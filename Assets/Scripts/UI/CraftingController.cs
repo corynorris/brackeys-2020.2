@@ -13,6 +13,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
     [SerializeField]
     private Button tankButton;
 
+    private Player player;
   
 
     [SerializeField]
@@ -28,7 +29,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
         //checkButtonStatus();
         lvlController = FindObjectOfType<LevelController>();
         Render();
-
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -61,6 +62,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
         {
             //add battery?
             lvlController.RemoveReserveScrap(lvlController.GetOxygenTankCost());
+            player.GetInventory().AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
         }
         Render();
     }
