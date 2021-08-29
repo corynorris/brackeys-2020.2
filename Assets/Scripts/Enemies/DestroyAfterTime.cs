@@ -11,13 +11,6 @@ public class DestroyAfterTime : MonoBehaviour
     private bool overlappingPlayer = false;
     private Collider2D otherObject;
 
-
-    private void Start()
-    {
-        
-
-    }
-
     private void Update()
     {
         if (overlappingPlayer)

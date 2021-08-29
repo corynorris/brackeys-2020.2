@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIOverlay : MonoBehaviour
+public class UI_Overlay : MonoBehaviour
 {
 
     [SerializeField] Button oxygenButton;
@@ -13,11 +13,13 @@ public class UIOverlay : MonoBehaviour
     [SerializeField] Button soundButton;
     [SerializeField] Button inventoryButton;
 
-    Player player;
+    private UI_Inventory uiInventory;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
+        uiInventory = FindObjectOfType<UI_Inventory>();
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class UIOverlay : MonoBehaviour
     public void OpenInventory()
     {
         Debug.Log("Opening Inventory");
+        uiInventory.ToggleInventory();
     }
 
     public void UseBattery()

@@ -31,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.timeScale > 0 && Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
         }

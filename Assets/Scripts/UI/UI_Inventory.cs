@@ -129,20 +129,24 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
+    public void ToggleInventory()
+    {
+        bool isActive = itemContainer.gameObject.activeSelf;
+        itemContainer.gameObject.SetActive(!isActive);
+        if (isActive)
+        {
+            Utils.spawnAudio(gameObject, openInventory, 1f);
+        }
+        else
+        {
+            Utils.spawnAudio(gameObject, closeInventory, 1f);
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown("i"))
         {
-            bool isActive = itemContainer.gameObject.activeSelf;
-            itemContainer.gameObject.SetActive(!isActive);
-            if (isActive)
-            {
-                Utils.spawnAudio(gameObject, openInventory, 1f);
-            }
-            else
-            {
-                Utils.spawnAudio(gameObject, closeInventory, 1f);
-            }
+            ToggleInventory();
         }   
     }
 
