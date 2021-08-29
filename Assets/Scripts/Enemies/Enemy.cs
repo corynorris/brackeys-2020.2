@@ -9,11 +9,23 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        
         health = GetComponent<Health>();
     }
-    void Start()
+    private void Start()
     {
+        health.OnTookDamage += Health_OnTookDamage;
         health.OnDied += Health_OnDied;
+    }
+
+    private void OnDestroy()
+    {
+        health.OnTookDamage -= Health_OnTookDamage;
+        health.OnDied -= Health_OnDied;
+    }
+    private void Health_OnTookDamage(object sender, Health.DamageInfoEventArgs e)
+    {
+        Debug.Log("took damage: " + e.damage);
     }
 
     private void Health_OnDied(object sender, Health.DamageInfoEventArgs e)

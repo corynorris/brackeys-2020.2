@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
     [Header("Blindness")]
     [SerializeField] private GameObject Volume;
+
+
     [SerializeField] private float lerpInTime = 1f;
     [SerializeField] private float lerpOutTime = 2f;
     [SerializeField] private float minIntensity = 0.2f;
@@ -162,6 +164,10 @@ public class Player : MonoBehaviour
                 return;
         }
     }
+    public bool IsAlive()
+    {
+        return health.IsAlive();
+    }
 
     private void Health_OnDied(object sender, Health.DamageInfoEventArgs e)
     {
@@ -177,6 +183,7 @@ public class Player : MonoBehaviour
     private void Health_OnTookDamage(object sender, Health.DamageInfoEventArgs e)
     {
         body.SetTrigger("Damaged");
+        LevelController.GetInstance().RemoveOxygen((int)e.damage);
     }
 
     public Vector3 GetCenter()
@@ -244,8 +251,13 @@ public class Player : MonoBehaviour
             this.menu = collision.gameObject.GetComponentInParent<ShipStationController>();
             menuAvaliable = true;
             this.menu.highlightStation(true);
+            UI_Notification.Instance.Notify("Press 'e' to use", 3f);
             Debug.Log("MENU AVLIABLE");
         }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+      
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -259,6 +271,7 @@ public class Player : MonoBehaviour
             menuAvaliable = false;
             this.menu.highlightStation(false);
             this.menu = null;
+            UI_Notification.Instance.Clear();
         }
     }
 

@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (enableMovement) {
-            rb.MovePosition(rb.position + forceModifier + movement * moveSpeed * Time.fixedDeltaTime );
+            rb.MovePosition(rb.position + forceModifier + movement.normalized * moveSpeed * Time.fixedDeltaTime );
             this.forceModifier = Vector2.zero; 
         }
     }

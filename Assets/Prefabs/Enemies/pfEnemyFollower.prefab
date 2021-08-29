@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 9191874077924459695}
   - component: {fileID: 8961297521350324443}
   - component: {fileID: 9079485334918133857}
-  - component: {fileID: 7897375785576788023}
+  - component: {fileID: 6652607446999243991}
   m_Layer: 10
   m_Name: pfEnemyFollower
   m_TagString: Untagged
@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  effectDistance: 1.5
-  frequency: 1
+  effectDistance: 1
+  frequency: 1.5
   detector: {fileID: 1412490439911285684}
 --- !u!114 &575035368158352289
 MonoBehaviour:
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae9812ea99c2a64a89ee18a72d4726d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulnerable: 0
   maxHealth: 10
 --- !u!114 &9191874077924459695
 MonoBehaviour:
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e64bfd607d6faf47932b4278e0df10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerName: explode
+  flashColor: {r: 1, g: 0.25943398, b: 0.25943398, a: 0}
 --- !u!114 &8961297521350324443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d971bf79773366443ac148f461d8a9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   closestDistance: 0.5
   detector: {fileID: 1412490439911285684}
 --- !u!95 &9079485334918133857
@@ -232,7 +233,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &7897375785576788023
+--- !u!58 &6652607446999243991
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,7 +248,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!1 &163726656525063931
 GameObject:
   m_ObjectHideFlags: 0

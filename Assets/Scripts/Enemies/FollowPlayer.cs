@@ -32,14 +32,12 @@ public class FollowPlayer : MonoBehaviour
 
     private void Detector_OnDetectedTagStart(object sender, Detector.DetectionInfoEventArgs e)
     {
-        Debug.Log("Started chasing");
         otherObject = e.detected;
         chasing = true;
     }
 
     private void Detector_OnDetectedTagStop(object sender, Detector.DetectionInfoEventArgs e)
     {
-        Debug.Log("Stopped chasing");
         otherObject = null;
         chasing = false;
     }

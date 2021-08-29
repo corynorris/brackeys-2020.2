@@ -30,8 +30,9 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0 && !player.IsAlive()) return;
 
-        if (Time.timeScale > 0 && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
         }
@@ -53,6 +54,7 @@ public class PlayerCombat : MonoBehaviour
             Health health = enemy.GetComponent<Health>();
             if (health != null)
             {
+                Debug.Log("Attacking : " + enemy.name);
                 health.TakeDamage(attackDamage, player.GetForwardDirection());
             }
         }

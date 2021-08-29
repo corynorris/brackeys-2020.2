@@ -24,6 +24,11 @@ public class Health : MonoBehaviour
         curHealth = maxHealth;
     }
 
+    public bool IsAlive()
+    {
+        return curHealth > 0;
+    }
+
     public void Heal(float amount)
     {
         curHealth = Mathf.Clamp(curHealth + amount, 0, maxHealth);

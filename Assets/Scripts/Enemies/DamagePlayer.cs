@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Enemy))]
 public class DamagePlayer : MonoBehaviour
 {
 
@@ -23,9 +22,11 @@ public class DamagePlayer : MonoBehaviour
     private void Start()
     {
         if (!detector) Debug.Log(this.gameObject.name + " needs a detector!");
-
+        
         detector.OnDetectedTagStart += Detector_OnDetectedTagStart;
         detector.OnDetectedTagStop += Detector_OnDetectedTagStop;
+        
+        timePassed = frequency;
     }
 
 
