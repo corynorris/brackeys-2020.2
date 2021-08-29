@@ -87,7 +87,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         part4Text.text = partNamesArray[3];
         
         if(!lvlController.GetShip().ReactorStatus())
-            part1Cost.text = "Repair Cost " + lvlController.GetShip().GetReactorRepairCost();
+            part1Cost.text = "Repair Cost " + lvlController.GetShip().GetReactorRepairCost() + " Scrap";
         else
         {
             part1Cost.text = "Reactor has been fully restored!";
@@ -95,7 +95,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         }
 
         if (!lvlController.GetShip().ThrustersStatus())
-            part2Cost.text = "Repair Cost " + lvlController.GetShip().GetThrustersRepairCost();
+            part2Cost.text = "Repair Cost " + lvlController.GetShip().GetThrustersRepairCost() + " Scrap";
         else
         {
             part2Cost.text = "Thrusters have been fully restored!";
@@ -103,7 +103,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         }
 
         if (!lvlController.GetShip().CockpitStatus())
-            part3Cost.text = "Repair Cost " + lvlController.GetShip().GetCockpitRepairCost();
+            part3Cost.text = "Repair Cost " + lvlController.GetShip().GetCockpitRepairCost() + " Scrap";
         else
         {
             part3Cost.text = "Cockpit has been fully restored!";
@@ -111,14 +111,14 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         }
 
         if (!lvlController.GetShip().WingStatus())
-            part4Cost.text = "Repair Cost " + lvlController.GetShip().GetWingRepairCost();
+            part4Cost.text = "Repair Cost " + lvlController.GetShip().GetWingRepairCost() + " Scrap";
         else
         {
             part4Cost.text = "Wings have been fully restored!";
             part4Button.enabled = false;
         }
         
-        hullRepairCost.text = "Repair Cost " + lvlController.GetShip().GetHullRepairCost();
+        hullRepairCost.text = "Repair Cost " + lvlController.GetShip().GetHullRepairCost() + " Scrap";
         setRepairText(Mathf.RoundToInt(lvlController.GetShipHealth()) + "%");
     }
 

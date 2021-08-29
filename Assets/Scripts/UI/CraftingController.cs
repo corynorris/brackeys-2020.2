@@ -42,8 +42,8 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
 
     private void Render()
     {
-        setBatteryAmountText("Crafting Cost: " + lvlController.GetBatteryPackCost() + " Scrap");
-        setTankAmountText("Crafting Cost: " + lvlController.GetOxygenTankCost() + " Scrap");
+        setBatteryAmountText("Crafting Cost " + lvlController.GetBatteryPackCost() + " Scrap");
+        setTankAmountText("Crafting Cost " + lvlController.GetOxygenTankCost() + " Scrap");
         checkButtonStatus();
     }
 

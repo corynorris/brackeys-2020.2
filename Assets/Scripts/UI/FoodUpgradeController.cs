@@ -46,16 +46,16 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
 
     private void Render()
     {
-        setCurrLevelText("Level: " + lvlController.foodProcessingLvl);
-        setCurrLevelDesc("One nutrient unit processed into " + lvlController.GetFoodProcessingLvlMultiplier()[lvlController.foodProcessingLvl - 1] + " food units.");
+        setCurrLevelText("Level " + lvlController.foodProcessingLvl);
+        setCurrLevelDesc("1 nutrient unit processed into " + lvlController.GetFoodProcessingLvlMultiplier()[lvlController.foodProcessingLvl - 1] + " food units.");
         
 
 
         if (lvlController.NextFoodProcessingLvlCost() > 0)
         {
             setNextLevelText("Level: " + (lvlController.foodProcessingLvl + 1));
-            setNextLevelDesc("One nutrient unit processed into " + lvlController.GetFoodProcessingLvlMultiplier()[lvlController.foodProcessingLvl] + " food units.");
-            setNextLevelCost("Upgrade Cost: " + lvlController.NextFoodProcessingLvlCost() + " Scrap");
+            setNextLevelDesc("1 nutrient unit processed into " + lvlController.GetFoodProcessingLvlMultiplier()[lvlController.foodProcessingLvl] + " food units.");
+            setNextLevelCost("Upgrade Cost " + lvlController.NextFoodProcessingLvlCost() + " Scrap");
 
             if (lvlController.GetReserveScrap() >= lvlController.NextFoodProcessingLvlCost())
             {
