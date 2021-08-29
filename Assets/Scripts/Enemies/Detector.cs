@@ -15,21 +15,28 @@ public class Detector : MonoBehaviour
 
     public event EventHandler<DetectionInfoEventArgs> OnDetectedTagStop;
     public event EventHandler<DetectionInfoEventArgs> OnDetectedTagStart;
+    public event EventHandler<DetectionInfoEventArgs> OnDetectedTagStay;
     public class DetectionInfoEventArgs : EventArgs
     {
         public Collider2D detected;
     }
 
+    private void StayDetecting(Collider2D otherObject)
+    {
+        DetectionInfoEventArgs detectionInfoEventArgs = new DetectionInfoEventArgs { detected = otherObject };
+        OnDetectedTagStay?.Invoke(this, detectionInfoEventArgs);
+    }
+
     private void StartDetecting(Collider2D otherObject)
     {
         DetectionInfoEventArgs detectionInfoEventArgs = new DetectionInfoEventArgs { detected = otherObject };
-        OnDetectedTagStart.Invoke(this, detectionInfoEventArgs);
+        OnDetectedTagStart?.Invoke(this, detectionInfoEventArgs);
     }
 
     private void StopDetecting()
     {
         DetectionInfoEventArgs detectionInfoEventArgs = new DetectionInfoEventArgs { detected = null };
-        OnDetectedTagStop.Invoke(this, detectionInfoEventArgs);
+        OnDetectedTagStop?.Invoke(this, detectionInfoEventArgs);
     }
 
     private void OnTriggerEnter2D(Collider2D otherObject)
@@ -80,5 +87,17 @@ public class Detector : MonoBehaviour
 
     }
 
+    void OnTriggerStay2D(Collider2D otherObject)
+    {
+        string tag = otherObject.gameObject.tag;
 
+        if (tag != detectTag && tag != "Fog") return;
+
+        if (otherObject.gameObject.tag == detectTag)
+        {
+            StayDetecting(otherObject);
+        }
+
+    }
+       
 }

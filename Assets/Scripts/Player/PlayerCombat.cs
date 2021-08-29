@@ -72,12 +72,23 @@ public class PlayerCombat : MonoBehaviour
         if (clampNESW)
         {
             Vector3 forward = player.GetForwardDirection();
+            
+            
             if (forward.sqrMagnitude > 1)
             {
-                forward.x = 0;
+                forward.x = 0.0f;
+            }
+
+            // Hack to make it a bit more align with animation
+            if (forward.y >= 0 )
+            {
+                Vector3 offset = new Vector2(0, 0.5f);
+                return player.GetCenter() + offset + forward * attackRange;
             }
 
             return player.GetCenter() + forward * attackRange;
+
+
         }
         else
         {

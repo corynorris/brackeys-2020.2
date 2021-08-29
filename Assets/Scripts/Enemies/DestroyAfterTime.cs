@@ -4,66 +4,24 @@ using UnityEngine;
 
 public class DestroyAfterTime : MonoBehaviour
 {
-    public float effectDistance = 0f;
+    public Detector detector;
     public float destroyAfter = 1f;
     public bool destroyOnWallCollision = true;
-
-    private bool overlappingPlayer = false;
-    private Collider2D otherObject;
-
-    private void Update()
+    
+    private void Start()
     {
-        if (overlappingPlayer)
-        {
-            Vector3 playerPos = otherObject.transform.position;
-            Vector3 enemyPos = gameObject.transform.position;
+        if (!detector) Debug.Log(this.gameObject.name + " needs a detector!");
 
-            float distance = Vector3.Distance(playerPos, enemyPos);
-
-            if (distance <= effectDistance)
-            {
-                Destroy(gameObject, destroyAfter);
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D otherObject)
-    {
-
-        if (otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = true;
-            this.otherObject = otherObject;
-            
-        }
-         
+        detector.OnDetectedTagStart += Detector_OnDetectedTagStart;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnDestroy()
     {
-        //if (overlappingPlayer && destroyOnWallCollision && collision.gameObject.tag != "Player")
-        //{
-        //    Vector3 playerPos = collision.gameObject.transform.position;
-        //    Vector3 enemyPos = gameObject.transform.position;
-
-        //    float distance = Vector3.Distance(playerPos, enemyPos);
-
-        //    Debug.Log("another collision, distance: " + distance);
-        //    if (distance < 2f)
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+        detector.OnDetectedTagStart -= Detector_OnDetectedTagStart;
     }
 
-
-    private void OnTriggerExit2D(Collider2D otherObject)
+    private void Detector_OnDetectedTagStart(object sender, Detector.DetectionInfoEventArgs e)
     {
-        if (otherObject.gameObject.tag == "Player")
-        {
-            overlappingPlayer = false;
-            this.otherObject = null;
-        }
-
+        Destroy(this.gameObject, destroyAfter);
     }
-
 }
