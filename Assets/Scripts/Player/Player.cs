@@ -331,7 +331,7 @@ public class Player : MonoBehaviour
         levelControler.DepositScrap();
         oldPos = Instance.transform.position;
         //SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
-        Instance.transform.position = new Vector3(-15, -15, 0);
+        Instance.transform.position = new Vector3(-57, -15, 0);
         Utils.spawnAudio(gameObject, closeDoor, 0.45f);
         MusicManager.getInstance().updateMusic(insideAmbience);
         isInside = true;

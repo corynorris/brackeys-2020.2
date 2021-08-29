@@ -28,10 +28,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioClip[] outsideSteps;
 
+    private LevelController levelController;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        levelController = FindObjectOfType<LevelController>();
     }
 
 
@@ -108,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (enableMovement) {
-            rb.MovePosition(rb.position + forceModifier + movement.normalized * moveSpeed * Time.fixedDeltaTime );
+            rb.MovePosition(rb.position + forceModifier + movement.normalized * moveSpeed * levelController.GetBootsMultiplier() * Time.fixedDeltaTime );
             this.forceModifier = Vector2.zero; 
         }
     }
