@@ -24,6 +24,10 @@ public class Ship : MonoBehaviour
     [SerializeField] float wingRepairCost = 30.0f;
     [SerializeField] float cockpitRepairCost = 30.0f;
     [SerializeField] float thrustersRepairCost = 30.0f;
+
+    [Header("Win UI")]
+    [SerializeField] private UI_Win win;
+
     float timeTracker = 0f;
     private bool decaying = false;
 
@@ -131,20 +135,31 @@ public class Ship : MonoBehaviour
     internal void RestoreReactorHealthMax()
     {
         reactorHealth = reactorHealthMax;
+        CheckShipStatus();
     }
 
     internal void RestoreCockpitHealthMax()
     {
         cockpitHealth = cockpitHealthMax;
+        CheckShipStatus();
     }
 
     internal void RestoreWingsHealthMax()
     {
         wingHealth = wingHealthMax;
+        CheckShipStatus();
     }
 
     internal void RestoreThrustersHealthMax()
     {
         thrustersHealth = thrustersHealthMax;
+        CheckShipStatus();
+    }
+
+    private void CheckShipStatus()
+    {
+        if (reactorHealth == reactorHealthMax && wingHealth == wingHealthMax && thrustersHealth == thrustersHealthMax && cockpitHealth == cockpitHealthMax)
+            win.Show();
+            Debug.Log("You WIN!!!");
     }
 }

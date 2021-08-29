@@ -35,8 +35,6 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
     {
         lvlController = LevelController.GetInstance().GetComponent<LevelController>();
         player = FindObjectOfType<Player>();
-        Render();       
-        
         //UpgradeFood();
     }
 
