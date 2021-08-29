@@ -310,7 +310,7 @@ public class Player : MonoBehaviour
         lerpTime = lerpInTime * perc;
         currentLerpTime = 0;
         startIntensity = vg.intensity.value;
-        targetIntensity = maxIntensity;
+        targetIntensity = maxIntensity / levelControler.GetSuiteGogglesEffect();
     }
 
     public void UnBlind()
