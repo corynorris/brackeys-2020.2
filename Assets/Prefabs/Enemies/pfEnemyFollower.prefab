@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c2f0fa5c1efb44a86b744a6c4ac82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  effectDistance: 1
+  damage: 5
+  effectDistance: 1.2
   frequency: 1.5
   detector: {fileID: 1412490439911285684}
 --- !u!114 &575035368158352289
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerable: 0
-  maxHealth: 10
+  maxHealth: 1
 --- !u!114 &9191874077924459695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  closestDistance: 0.5
+  closestDistance: 1
   detector: {fileID: 1412490439911285684}
 --- !u!95 &9079485334918133857
 Animator:

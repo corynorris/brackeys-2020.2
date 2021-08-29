@@ -128,6 +128,11 @@ public class LevelController : MonoBehaviour
         return foodProcessingLvlMultiplier;
     }
 
+    public float GetBootsMultiplier()
+    {
+        return suitBootsLvlMultiplier[suitBootsLvl - 1];
+    }
+
 
     public float NextSuiteTankLvlCost()
     {
