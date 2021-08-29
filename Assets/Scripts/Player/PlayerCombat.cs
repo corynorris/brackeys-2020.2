@@ -15,7 +15,8 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     public float attackDamage = 3;
 
-    
+    [SerializeField]
+    private AudioClip[] miningClip;
 
     void Awake()
     {
@@ -54,6 +55,10 @@ public class PlayerCombat : MonoBehaviour
             {
                 health.TakeDamage(attackDamage, player.GetForwardDirection());
             }
+        }
+        if (hitEnemies.Length > 0)
+        {
+            Utils.spawnAudio(gameObject, miningClip[Random.Range(0,miningClip.Length-1)], 0.5f);
         }
     }
 

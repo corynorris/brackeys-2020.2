@@ -19,6 +19,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 forceModifier = Vector2.zero;
 
+    private float StepCooldown;
+    private float lastStep;
+
+    [SerializeField]
+    private AudioClip[] insideSteps;
+
+    [SerializeField]
+    private AudioClip[] outsideSteps;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        bool canMove = player.CanMove(); 
+        bool canMove = player.CanMove();
 
         if (canMove)
         {
@@ -40,12 +49,34 @@ public class PlayerMovement : MonoBehaviour
             float currentSpeed = movement.SqrMagnitude();
             player.SetSpeed(currentSpeed);
 
-    
-   
+            
+
             if (currentSpeed > 0.01f)
             {
                 player.SetForwardDirection(movement);
-       
+
+                if (lastStep + StepCooldown < Time.time)
+                {
+                    AudioClip clip;
+                    float volume;
+                    float delay;
+                    if (player.isInside)
+                    {
+                        clip = insideSteps[Random.Range(0, insideSteps.Length - 1)];
+                        volume = 0.4f;
+                        delay = 0.05f;
+                    }
+                    else
+                    {
+                        clip = outsideSteps[Random.Range(0, outsideSteps.Length - 1)];
+                        volume = 0.7f;
+                        delay = 0.05f;
+                    }
+
+                    StepCooldown = clip.length + delay;
+                    lastStep = Time.time;
+                    Utils.spawnAudio(gameObject, clip, volume);
+                }
 
                 if (!facingRight && movement.x > 0.5f)
                 {

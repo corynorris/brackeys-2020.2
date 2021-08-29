@@ -29,6 +29,11 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
     [SerializeField]
     private Text tankCostText;
 
+    [SerializeField]
+    private AudioClip upgradeClip;
+
+    private Player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +41,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         //UpgradeBoots();
         //UpgradeGoggles();
         //UpgradeTank();
+        player = FindObjectOfType<Player>();
         Render();
 
     }
@@ -101,6 +107,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         {
             lvlController.RemoveReserveScrap(lvlController.NextSuiteBootsLvlCost());
             lvlController.suitBootsLvl++;
+            Utils.spawnAudio(player.gameObject, upgradeClip, 0.65f);
             Render();
         }
     }
@@ -112,6 +119,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         {
             lvlController.RemoveReserveScrap(lvlController.NextSuiteGogglesLvlCost());
             lvlController.suitGogglesLvl++;
+            Utils.spawnAudio(player.gameObject, upgradeClip, 0.65f);
             Render();
         }
     }
@@ -122,6 +130,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
         {            
             lvlController.RemoveReserveScrap(lvlController.NextSuiteTankLvlCost());
             lvlController.suitTankLvl++;
+            Utils.spawnAudio(player.gameObject, upgradeClip, 0.65f);
             Render();
         }
     }
