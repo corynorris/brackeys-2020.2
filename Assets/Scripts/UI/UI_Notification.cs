@@ -23,14 +23,16 @@ public class UI_Notification : MonoBehaviour
         notificationText = transform.Find("notificationText").GetComponent<TextMeshProUGUI>();
     }
 
-    public void Notify(string message, float duration = 1f)
+    public void Notify(string message, float duration = 10f)
     {
         notificationText.text = message;
         this.duration = duration;
         this.elapsed = 0;
         this.messageShowing = true;
-
-
+    }
+    public void Clear()
+    {
+        notificationText.text = "";
     }
 
     void Update()

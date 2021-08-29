@@ -46,7 +46,6 @@ public class Cloud : MonoBehaviour
         Player player = otherObject.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            Debug.Log("calling blind on player");
             player.Blind();
         }
     }

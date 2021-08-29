@@ -93,10 +93,8 @@ GameObject:
   - component: {fileID: 163726655640329157}
   - component: {fileID: 163726655640329158}
   - component: {fileID: 163726655640329155}
-  - component: {fileID: 163726655640329156}
   - component: {fileID: 819342035646696163}
   - component: {fileID: 2542186366863269216}
-  - component: {fileID: 8672675765969442435}
   m_Layer: 10
   m_Name: pfEnemyPuller
   m_TagString: Untagged
@@ -158,18 +156,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &163726655640329156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163726655640329159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb569d9d5df8d724da53721a08a401cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &819342035646696163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,19 +188,6 @@ MonoBehaviour:
   effectDistance: 1.5
   frequency: 1
   detector: {fileID: 1119085794249607994}
---- !u!114 &8672675765969442435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163726655640329159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae9812ea99c2a64a89ee18a72d4726d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
 --- !u!1 &163726656525063931
 GameObject:
   m_ObjectHideFlags: 0
