@@ -120,6 +120,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         
         hullRepairCost.text = "Repair Cost " + lvlController.GetShip().GetHullRepairCost() + " Scrap";
         setRepairText(Mathf.RoundToInt(lvlController.GetShipHealth()) + "%");
+        checkButtonStatus();
     }
 
     public void repair()
