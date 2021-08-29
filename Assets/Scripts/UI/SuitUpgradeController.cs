@@ -54,13 +54,13 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
 
     private void Render()
     {
-        setTankLevelText("Level: " + lvlController.suitTankLvl);
-        setBootsLevelText("Level: " + lvlController.suitBootsLvl);
-        setGogglesLevelText("Level: " + lvlController.suitGogglesLvl);
+        setTankLevelText("Level " + lvlController.suitTankLvl);
+        setBootsLevelText("Level " + lvlController.suitBootsLvl);
+        setGogglesLevelText("Level " + lvlController.suitGogglesLvl);
 
         if (lvlController.NextSuiteTankLvlCost() > 0)
         {
-            setTankCostText("Upgrade Cost: " + lvlController.NextSuiteTankLvlCost() + " Scrap");            
+            setTankCostText("Upgrade Cost " + lvlController.NextSuiteTankLvlCost() + " Scrap");            
             if (lvlController.GetReserveScrap() < lvlController.NextSuiteTankLvlCost())
                 tankButton.enabled = false;         
             
@@ -73,7 +73,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
 
         if (lvlController.NextSuiteGogglesLvlCost() > 0)
         {
-            setGogglesCostText("Upgrade Cost: " + lvlController.NextSuiteGogglesLvlCost() + " Scrap");
+            setGogglesCostText("Upgrade Cost " + lvlController.NextSuiteGogglesLvlCost() + " Scrap");
             if (lvlController.GetReserveScrap() < lvlController.NextSuiteGogglesLvlCost())
                 gogglesButton.enabled = false;
 
@@ -86,7 +86,7 @@ public class SuitUpgradeController : MonoBehaviour, IShipStationMenu
 
         if (lvlController.NextSuiteBootsLvlCost() > 0)
         {
-            setBootsCostText("Upgrade Cost: " + lvlController.NextSuiteBootsLvlCost() + " Scrap");
+            setBootsCostText("Upgrade Cost " + lvlController.NextSuiteBootsLvlCost() + " Scrap");
             if (lvlController.GetReserveScrap() < lvlController.NextSuiteBootsLvlCost())
                 bootsButton.enabled = false;
 
