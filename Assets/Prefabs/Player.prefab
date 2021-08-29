@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &504693952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504693954}
+  - component: {fileID: 504693953}
+  m_Layer: 0
+  m_Name: MusicController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504693954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504693952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1363548396761580263}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504693953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504693952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fff92d578da6445b21a2fd9e322640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuMuisc: {fileID: 8300000, guid: e60dc5f8fea957d46859abb784d8538b, type: 3}
+  ambienceMuisc: {fileID: 8300000, guid: 805c51997958e0d4588e91e55a938530, type: 3}
+  volume: 0.5
+  ambienceVolume: 0.6
 --- !u!1 &1363548395196549607
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +451,7 @@ GameObject:
   - component: {fileID: 1363548396761580261}
   - component: {fileID: 1363548396761580257}
   - component: {fileID: 1363548396761580258}
+  - component: {fileID: 698382657}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -426,6 +474,7 @@ Transform:
   - {fileID: 1363548395892659143}
   - {fileID: 1363548395997403933}
   - {fileID: 1363548395754087597}
+  - {fileID: 504693954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.662}
@@ -442,7 +491,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -519,6 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0c0d6ea8b2e0c449011fd604182368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelControler: {fileID: 0}
   gameOver: {fileID: 0}
   uiInventory: {fileID: 0}
   Volume: {fileID: 0}
@@ -528,6 +578,11 @@ MonoBehaviour:
   maxIntensity: 1
   menuOpen: 0
   menuAvaliable: 0
+  pickupItem: {fileID: 8300000, guid: 458fef8041cce9d48b067b1910743905, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
+  outsideAmbience: {fileID: 8300000, guid: 805c51997958e0d4588e91e55a938530, type: 3}
+  insideAmbience: {fileID: 8300000, guid: f70b2ba2bf1768549b569118fbc32357, type: 3}
+  isInside: 0
 --- !u!114 &1363548396761580261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +595,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d48e94651543e41b5dacd3ceb45b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 6
+  insideSteps:
+  - {fileID: 8300000, guid: da1c970753672e8429b498fca8f20962, type: 3}
+  - {fileID: 8300000, guid: 882bb1b8cdb1ceb48b5d3de4905cb884, type: 3}
+  - {fileID: 8300000, guid: 8bcbf760f815f8c439af4f97b84757f7, type: 3}
+  outsideSteps:
+  - {fileID: 8300000, guid: 9067cc3a701528248a6a988f749b4cd7, type: 3}
+  - {fileID: 8300000, guid: 519bcd74339675d429def7413a0e9c9b, type: 3}
+  - {fileID: 8300000, guid: 64ef7221711ee4b469db5ee3a4d6309a, type: 3}
 --- !u!114 &1363548396761580257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,12 +618,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clampNESW: 1
   drawDebugBox: 1
-  attackRange: 0.7
-  attackSize: 0.5
+  attackRange: 0.4
+  attackSize: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 1024
   attackDamage: 3
+  miningClip:
+  - {fileID: 8300000, guid: 94b135367390d38499c81d82be7ef9c4, type: 3}
+  - {fileID: 8300000, guid: eb2609c3f35207148bd4f9158cbe5cb1, type: 3}
+  - {fileID: 8300000, guid: 80fda3ca3510d2d4c8a301bd681be25e, type: 3}
 --- !u!114 &1363548396761580258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,4 +640,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae9812ea99c2a64a89ee18a72d4726d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulnerable: 1
   maxHealth: 20
+--- !u!114 &698382657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363548396761580282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000f694157fdd2446b68f3308eec9dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowOxygenCount: 30
+  flashColor: {r: 1, g: 0, b: 0.03653574, a: 0}
