@@ -2,7 +2,7 @@
 
 ## Overview
 Recycle debris and return it to the core systems before it gets destroyed by an incoming meteor shower.
-https://itch.io/jam/brackeys-6
+https://itch.io/jam/brackeys-6/rate/1176745
 
 ## Results
 
