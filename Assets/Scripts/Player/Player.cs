@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
+
     private Inventory inventory;
 
     [Header("Blindness")]
@@ -122,6 +123,23 @@ public class Player : MonoBehaviour
         if (vg != null) { 
             vg.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, perc);
         }
+
+        if (menuAvaliable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                OpenMenu();
+
+            }
+        }
+        else if (menuOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseMenu();
+            }
+        }
+
 
     }
 
