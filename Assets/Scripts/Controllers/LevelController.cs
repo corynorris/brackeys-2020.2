@@ -158,6 +158,11 @@ public class LevelController : MonoBehaviour
             return -1;
     }
 
+    public float GetSuiteGogglesEffect()
+    {
+        return suitGogglesLvlMultiplier[suitGogglesLvl - 1];
+    }
+
     public float GetMaxOxygen()
     {
         return maxPlayerOxygen * suitTankLvlMultiplier[suitTankLvl - 1];
