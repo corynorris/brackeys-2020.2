@@ -23,15 +23,18 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
     [SerializeField]
     private Text nextLevelDesc;
 
-        
-  
-    
+    [SerializeField]
+    private AudioClip upgradeClip;
+
+    private Player player;
+
     [SerializeField] GameObject upgradeErrorNotification;
 
     // Start is called before the first frame update
     void Start()
     {
         lvlController = LevelController.GetInstance().GetComponent<LevelController>();
+        player = FindObjectOfType<Player>();
         Render();       
         
         //UpgradeFood();
@@ -89,6 +92,7 @@ public class FoodUpgradeController : MonoBehaviour, IShipStationMenu
         {
             lvlController.RemoveReserveScrap(lvlController.NextFoodProcessingLvlCost());
             lvlController.foodProcessingLvl++;
+            Utils.spawnAudio(player.gameObject, upgradeClip, 0.65f);
             Render();
         }
        

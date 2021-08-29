@@ -52,8 +52,26 @@ public class Player : MonoBehaviour
     private Animator head;
     private Animator weapon;
 
+
+    [SerializeField]
+    private AudioClip pickupItem;
+
+    [SerializeField]
+    private AudioClip closeDoor;
+
+
+    [SerializeField]
+    private AudioClip outsideAmbience;
+
+
+    [SerializeField]
+    private AudioClip insideAmbience;
+
+    public bool isInside;
+
     private void Awake()
     {
+        isInside = false;
         Instance = this;
         inventory = new Inventory(UseItem);
         circleCollider = GetComponent<CircleCollider2D>();
@@ -195,6 +213,7 @@ public class Player : MonoBehaviour
             {
                 if (inventory.AddItem(itemWorld.GetItem())) { 
                     itemWorld.DestroySelf();
+                    Utils.spawnAudio(gameObject, pickupItem, 0.35f);
                 }
             }
         }
@@ -215,7 +234,10 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Station")
         {
-            CloseMenu();            
+            if (menuOpen)
+            {
+                CloseMenu();
+            }                       
             menuAvaliable = false;
             this.menu.highlightStation(false);
             this.menu = null;
@@ -279,6 +301,9 @@ public class Player : MonoBehaviour
         oldPos = Instance.transform.position;
         SceneManager.LoadScene("Spaceship", LoadSceneMode.Additive);
         Instance.transform.position = new Vector3(-15, -15, 0);
+        Utils.spawnAudio(gameObject, closeDoor, 0.45f);
+        MusicManager.getInstance().updateMusic(insideAmbience);
+        isInside = true;
     }
 
     public void ExitShip()
@@ -291,6 +316,9 @@ public class Player : MonoBehaviour
         levelControler.ResumeOxygenConsumption();
         levelControler.GetShip().ResumeDeacay();
         FindObjectOfType<SpawnManager>().RestartSpawners();
+        Utils.spawnAudio(gameObject, closeDoor, 0.4f);
+        MusicManager.getInstance().updateMusic(outsideAmbience);
+        isInside = false;
         //put back outside ship
     }
 

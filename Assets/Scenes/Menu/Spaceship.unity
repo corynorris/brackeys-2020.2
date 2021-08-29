@@ -916,6 +916,10 @@ MonoBehaviour:
   isExit: 0
   isEntrance: 0
   highlight: {fileID: 715147405}
+  activateSound: {fileID: 8300000, guid: 3f114cac9bf95cf4da232db1a5bc671d, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 86f8882279d594f42967d504dcd0973e, type: 3}
+  openDoor: {fileID: 8300000, guid: 3c19217ac3eff0644996a6d25009574b, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
 --- !u!4 &177479249
 Transform:
   m_ObjectHideFlags: 0
@@ -2458,6 +2462,7 @@ MonoBehaviour:
   gogglesCostText: {fileID: 279575108}
   tankLevelText: {fileID: 1811008844}
   tankCostText: {fileID: 1867011126}
+  upgradeClip: {fileID: 8300000, guid: bb273170a0ac5524499523d326859668, type: 3}
 --- !u!1 &431740912
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,6 +5280,10 @@ MonoBehaviour:
   isExit: 0
   isEntrance: 0
   highlight: {fileID: 1806731776}
+  activateSound: {fileID: 8300000, guid: 3f114cac9bf95cf4da232db1a5bc671d, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 86f8882279d594f42967d504dcd0973e, type: 3}
+  openDoor: {fileID: 8300000, guid: 3c19217ac3eff0644996a6d25009574b, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
 --- !u!4 &794519427
 Transform:
   m_ObjectHideFlags: 0
@@ -5767,6 +5776,10 @@ MonoBehaviour:
   isExit: 0
   isEntrance: 0
   highlight: {fileID: 1551648850}
+  activateSound: {fileID: 8300000, guid: 3f114cac9bf95cf4da232db1a5bc671d, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 86f8882279d594f42967d504dcd0973e, type: 3}
+  openDoor: {fileID: 8300000, guid: 3c19217ac3eff0644996a6d25009574b, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
 --- !u!4 &873676519
 Transform:
   m_ObjectHideFlags: 0
@@ -6050,6 +6063,10 @@ MonoBehaviour:
   isExit: 0
   isEntrance: 0
   highlight: {fileID: 688664029}
+  activateSound: {fileID: 8300000, guid: 3f114cac9bf95cf4da232db1a5bc671d, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 86f8882279d594f42967d504dcd0973e, type: 3}
+  openDoor: {fileID: 8300000, guid: 3c19217ac3eff0644996a6d25009574b, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
 --- !u!4 &952260061
 Transform:
   m_ObjectHideFlags: 0
@@ -6326,6 +6343,7 @@ MonoBehaviour:
   tankButton: {fileID: 650607421}
   batteryAmountText: {fileID: 1337042819}
   tankAmountText: {fileID: 191809258}
+  craftItem: {fileID: 8300000, guid: 1bddcf6c97baaa347a8e073e9a9e04af, type: 3}
 --- !u!1 &994551969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11390,6 +11408,7 @@ MonoBehaviour:
   nextLevelCost: {fileID: 149276181}
   currLevelDesc: {fileID: 659192800}
   nextLevelDesc: {fileID: 589939328}
+  upgradeClip: {fileID: 8300000, guid: bb273170a0ac5524499523d326859668, type: 3}
   upgradeErrorNotification: {fileID: 1829182122}
 --- !u!1 &1551648850
 GameObject:
@@ -12026,6 +12045,8 @@ MonoBehaviour:
   - Thrusters
   - Cockpit
   - Wings
+  repairShipClip: {fileID: 8300000, guid: 60508ee2ba3817e4ca83ee80a227db3c, type: 3}
+  repairPartClip: {fileID: 8300000, guid: 7e47311cfda1f094f871e1f046a10707, type: 3}
 --- !u!1 &1617843902
 GameObject:
   m_ObjectHideFlags: 0
@@ -15214,6 +15235,10 @@ MonoBehaviour:
   isExit: 1
   isEntrance: 0
   highlight: {fileID: 716143489}
+  activateSound: {fileID: 0}
+  deactivateSound: {fileID: 0}
+  openDoor: {fileID: 8300000, guid: 3c19217ac3eff0644996a6d25009574b, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1274b6cbc7166a5448d3c8b364b4111e, type: 3}
 --- !u!4 &2109386200
 Transform:
   m_ObjectHideFlags: 0

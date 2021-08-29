@@ -99,21 +99,21 @@ public class MusicManager : MonoBehaviour
     {
         if (fadingOut)
         {
-            musicSource.volume -= 0.01f;
-            if (musicSource.volume <= 0)
+            ambienceSource.volume -= 0.01f;
+            if (ambienceSource.volume <= 0)
             {
                 fadingIn = true;
                 fadingOut = false;
-                musicSource.clip = newMusic;
-                musicSource.Play();
+                ambienceSource.clip = newMusic;
+                ambienceSource.Play();
             }
         }
         else if (fadingIn)
         {
-            musicSource.volume += 0.01f;
-            if (musicSource.volume >= currentVolume)
+            ambienceSource.volume += 0.01f;
+            if (ambienceSource.volume >= currentVolume)
             {
-                musicSource.volume = currentVolume;
+                ambienceSource.volume = currentVolume;
                 fadingIn = false;
             }
         }

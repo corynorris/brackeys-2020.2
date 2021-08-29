@@ -21,7 +21,9 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
 
     [SerializeField]
     private Text tankAmountText;
- 
+
+    [SerializeField]
+    private AudioClip craftItem;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
         {
             //add battery?
             lvlController.RemoveReserveScrap(lvlController.GetBatteryPackCost());
+            Utils.spawnAudio(player.gameObject, craftItem, 0.4f);
         }
         Render();
     }
@@ -63,6 +66,7 @@ public class CraftingController : MonoBehaviour, IShipStationMenu
             //add battery?
             lvlController.RemoveReserveScrap(lvlController.GetOxygenTankCost());
             player.GetInventory().AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
+            Utils.spawnAudio(player.gameObject, craftItem, 0.4f);
         }
         Render();
     }

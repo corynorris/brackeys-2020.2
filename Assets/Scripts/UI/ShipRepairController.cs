@@ -56,12 +56,21 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
     private string[] partNamesArray;
 
 
+    [SerializeField]
+    private AudioClip repairShipClip;
+
+    [SerializeField]
+    private AudioClip repairPartClip;
+
+    private Player player;
+
     // Start is called before the first frame update
     void Start()
     {
         lvlController = FindObjectOfType<LevelController>();
         Render();
         checkButtonStatus();
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -120,7 +129,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
         {
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetHullRepairCost());
             lvlController.RestoreShipHealth();
-            
+            Utils.spawnAudio(player.gameObject, repairShipClip, 0.65f);
         }
         checkButtonStatus();
     }
@@ -132,6 +141,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetReactorRepairCost());
             lvlController.GetShip().RestoreReactorHealthMax();
             //repair part
+            Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
         }
         checkButtonStatus();
     }
@@ -143,6 +153,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetThrustersRepairCost());
             lvlController.GetShip().RestoreThrustersHealthMax();
             //repair part
+            Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
         }
         checkButtonStatus();
     }
@@ -154,6 +165,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetCockpitRepairCost());
             lvlController.GetShip().RestoreCockpitHealthMax();
             //repair part
+            Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
         }
         checkButtonStatus();
     }
@@ -165,6 +177,7 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.RemoveReserveScrap(lvlController.GetShip().GetWingRepairCost());
             lvlController.GetShip().RestoreWingsHealthMax();
             //repair part
+            Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
         }
         checkButtonStatus();
     }

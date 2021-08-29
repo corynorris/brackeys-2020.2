@@ -18,6 +18,12 @@ public class UI_Inventory : MonoBehaviour
 
     private Player player;
 
+    [SerializeField]
+    private AudioClip openInventory;
+
+    [SerializeField]
+    private AudioClip closeInventory;
+
     private void Awake()
     {
         itemContainer = transform.Find("itemContainer");
@@ -129,7 +135,20 @@ public class UI_Inventory : MonoBehaviour
         {
             bool isActive = itemContainer.gameObject.activeSelf;
             itemContainer.gameObject.SetActive(!isActive);
+            if (isActive)
+            {
+                Utils.spawnAudio(gameObject, openInventory, 1f);
+            }
+            else
+            {
+                Utils.spawnAudio(gameObject, closeInventory, 1f);
+            }
         }   
+    }
+
+    public void closeInventorySound()
+    {
+        Utils.spawnAudio(gameObject, closeInventory, 1f);
     }
 }
 

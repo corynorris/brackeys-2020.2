@@ -60,7 +60,10 @@ public class LevelController : MonoBehaviour
     [SerializeField] int[] suitBootsCost;
 
     [SerializeField] int[] foodProcessingCost;
-    
+
+
+    [SerializeField]
+    private AudioClip refillOxygenClip;
 
     [SerializeField] float oxygenTankCost;
     [SerializeField] float batteryPackCost;
@@ -308,6 +311,7 @@ public class LevelController : MonoBehaviour
 
     public void ResetOxygen()
     {
+        Utils.spawnAudio(player.gameObject, refillOxygenClip, 0.35f);
         playerOxygen = GetMaxOxygen();
     }
 
