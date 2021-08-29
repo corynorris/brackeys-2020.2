@@ -23,12 +23,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
-  
     }
 
 
     void Update()
     {
+        if (Time.timeScale == 0) return;
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -65,20 +66,6 @@ public class PlayerMovement : MonoBehaviour
             enableMovement = false;
         }
 
-        if (player.menuAvaliable)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                player.OpenMenu();
-                
-            }
-        }else if (player.menuOpen)
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
-            {
-                player.CloseMenu();
-            }
-        }
 
     }
 

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool invulnerable = false;
+
     public event EventHandler<DamageInfoEventArgs> OnDied;
     public event EventHandler<DamageInfoEventArgs> OnTookDamage;
     public class DamageInfoEventArgs : EventArgs
@@ -34,9 +36,10 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage, Vector3 direction)
     {
-        maxHealth -= damage;
-        curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
-
+        if (!invulnerable) { 
+            maxHealth -= damage;
+            curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+        }
 
         DamageInfoEventArgs damageInfoEventArgs = new DamageInfoEventArgs { damage = damage, direction = direction };
             
