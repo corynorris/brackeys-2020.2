@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07573a142fc80e240829201c8ed2be5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectDistance: 2
-  destroyAfter: 1
+  detector: {fileID: 556597757221025149}
+  destroyAfter: 2
   destroyOnWallCollision: 1
 --- !u!1 &5984643536853515573
 GameObject:

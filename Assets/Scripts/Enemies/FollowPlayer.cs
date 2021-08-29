@@ -55,8 +55,10 @@ public class FollowPlayer : MonoBehaviour
 
             float distance = Vector3.Distance(playerPos, enemyPos);
 
-            if (distance >= closestDistance)
+            if (distance > closestDistance)
+            {
                 rb.MovePosition(targetPos);
+            }
         
         }
     }
