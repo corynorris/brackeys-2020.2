@@ -11,6 +11,23 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
     [SerializeField]
     private Button repairButton;
 
+    [SerializeField]
+    private GameObject part1BrokenSprite;
+    [SerializeField]
+    private GameObject part2BrokenSprite;
+    [SerializeField]
+    private GameObject part3BrokenSprite;
+    [SerializeField]
+    private GameObject part4BrokenSprite;
+
+    [SerializeField]
+    private GameObject part1FixedSprite;
+    [SerializeField]
+    private GameObject part2FixedSprite;
+    [SerializeField]
+    private GameObject part3FixedSprite;
+    [SerializeField]
+    private GameObject part4FixedSprite;
 
     [SerializeField]
     private Button part1Button;
@@ -142,6 +159,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.GetShip().RestoreReactorHealthMax();
             //repair part
             Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
+            part1BrokenSprite.SetActive(false);
+            part1FixedSprite.SetActive(true);
         }
         checkButtonStatus();
     }
@@ -154,6 +173,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.GetShip().RestoreThrustersHealthMax();
             //repair part
             Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
+            part2BrokenSprite.SetActive(false);
+            part2FixedSprite.SetActive(true);
         }
         checkButtonStatus();
     }
@@ -166,6 +187,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.GetShip().RestoreCockpitHealthMax();
             //repair part
             Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
+            part3BrokenSprite.SetActive(false);
+            part3FixedSprite.SetActive(true);
         }
         checkButtonStatus();
     }
@@ -178,6 +201,8 @@ public class ShipRepairController : MonoBehaviour, IShipStationMenu
             lvlController.GetShip().RestoreWingsHealthMax();
             //repair part
             Utils.spawnAudio(player.gameObject, repairShipClip, 0.45f);
+            part4BrokenSprite.SetActive(false);
+            part4FixedSprite.SetActive(true);
         }
         checkButtonStatus();
     }

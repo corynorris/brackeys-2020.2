@@ -85,11 +85,9 @@ public class Player : MonoBehaviour
         weapon = transform.Find("weapon").GetComponent<Animator>();
 
 
-        // Add some items
-        inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Light });
+        // Add some items        
         inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
-        inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });
-        inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.HoverBoard });
+        inventory.AddItem(new Item { amount = 1, itemType = Item.ItemType.Oxygen });        
         health = GetComponent<Health>();
     }
 

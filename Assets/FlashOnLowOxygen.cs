@@ -24,13 +24,15 @@ public class FlashOnLowOxygen : MonoBehaviour
         {
             StartCoroutine(Flash(0.5f));
             invoked = true;
+
         }
-        
+
         if (LevelController.GetInstance().GetPlayerOxygen() >= lowOxygenCount)
         {
             StopAllCoroutines();
+            sprite.color = originalColor;
             invoked = false;
-        }    
+        }
     }
 
     IEnumerator Flash(float intervalTime)
@@ -38,6 +40,7 @@ public class FlashOnLowOxygen : MonoBehaviour
 
         while (true)
         {
+            UI_Notification.Instance.Notify("LOW OXYGEN", 0.5f);
             sprite.color = Color.red;
             yield return new WaitForSeconds(intervalTime);
             sprite.color = originalColor;
