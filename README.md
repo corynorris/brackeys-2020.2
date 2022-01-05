@@ -1,12 +1,12 @@
 # Brackeys 2021.2
 
 ## Overview
-Recycle debris and return it to the core systems before it gets destroyed by an incoming meteor shower.
+Outlast the environment on a hostile planet to get back home.
 https://itch.io/jam/brackeys-6/rate/1176745
 
 ## Results
 
-TBD!
+https://itch.io/jam/brackeys-6/rate/1176745
 
 ## Demo
 https://crankky.itch.io/sandmageddon
